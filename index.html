@@ -505,6 +505,34 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
 .iprow .sname{white-space:normal;overflow:visible;text-overflow:clip}
 .ipdup{color:var(--mu);font-size:.72em;white-space:nowrap;padding:2px 8px;flex:0 0 auto}
 #list.drop{outline:2px dashed var(--ac);outline-offset:4px;border-radius:10px}
+/* ---------- presentation dock ---------- */
+#pres .pb .pmo{display:none}
+@media(max-width:760px){
+  #pres{padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
+  #pres .pb{top:auto;bottom:0;flex-wrap:wrap-reverse;justify-content:center;align-items:center;
+    gap:8px;padding:8px 10px calc(env(safe-area-inset-bottom,0px) + 8px);
+    border-bottom:none;border-top:1px solid var(--bd);box-shadow:0 -2px 14px rgba(0,0,0,.14)}
+  #pres .pb button{min-height:42px;font-size:14px;padding:6px 10px}
+  #pres .pb #pv,#pres .pb #nx{min-width:72px;min-height:54px;font-size:24px;line-height:1}
+  #pres .pb #pv{order:1}
+  #pres .pb .pg{order:2;margin:0;flex:1 1 auto;text-align:center;font-size:.92em}
+  #pres .pb #nx{order:3}
+  #pres .pb #pmo{order:4;display:inline-block;min-width:46px;min-height:54px;font-size:20px}
+  /* everything else waits behind the dots */
+  #pres .pb #ptm,#pres .pb #sw,#pres .pb #pm,#pres .pb #pp,
+  #pres .pb #fs,#pres .pb #px{display:none;order:6}
+  #pres .pb.more #ptm,#pres .pb.more #sw,#pres .pb.more #pm,#pres .pb.more #pp,
+  #pres .pb.more #fs,#pres .pb.more #px{display:inline-block}
+  /* a full-width spacer keeps the folded controls on their own row */
+  #pres .pb.more::before{content:"";flex:0 0 100%;order:5}
+  #pres .pb.more button{font-size:13px;padding:5px 8px;min-height:38px}
+  #pres .pb.more #pmo{background:var(--ac2);border-color:var(--ac);color:var(--ac)}
+  #pres .pb #ptm{font-size:.82em;color:var(--mu);font-variant-numeric:tabular-nums}
+  /* the book and chapter pickers only appear with the controls */
+  #pres .pc>.bar{display:none}
+  #pres.showbar .pc>.bar{display:flex;margin-bottom:10px}
+  #pres .pbar{height:2px;opacity:.5}
+}
 /* Hover belongs to a mouse. As soon as a finger or pen touches the screen the
    html gets .touch and the sticky hover shading is switched off; every tap then
    answers with a short flash instead. */
@@ -2513,6 +2541,47 @@ function printDateOf(s){
   if(!when||isNaN(when.getTime()))return '';
   return when.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
 }
+function alignedBlocks(bl){
+  /* empty lines carry nothing into a document - they only leave uneven gaps */
+  const out=(bl||[]).filter(b=>{
+    if(!b)return false;
+    if(b.t==='hr')return true;
+    return String(b.h||'').replace(/<[^>]*>/g,'').replace(/&nbsp;/g,' ').trim()!=='';
+  }).map(b=>{
+    const c=Object.assign({},b);
+    if(typeof c.h==='string'){
+      /* indentation belongs to structure, not to spaces typed or pasted at the start
+         of a line - those are what push a first point out of line with the rest */
+      let h=c.h;
+      for(let k=0;k<3;k++){
+        const before=h;
+        h=h.replace(/^(?:\s|&nbsp;|&#160;|<br\s*\/?>)+/i,'');
+        h=h.replace(/^(<[^>]+>)(?:\s|&nbsp;|&#160;|<br\s*\/?>)+/i,'$1');
+        if(h===before)break;
+      }
+      c.h=h;
+    }
+    return c;
+  });
+  /* every block that carries running text, whatever its shape */
+  const body=t=>t==='p'||t==='ul'||t==='num'||t==='todo'||t==='quote';
+  let i=0;
+  while(i<out.length){
+    if(!body(out[i].t)){i++;continue}
+    let j=i+1;
+    while(j<out.length&&body(out[j].t))j++;
+    const run=out.slice(i,j);
+    /* a first line sitting deeper than everything after it is an editing slip,
+       not structure - a blank line in the middle must not hide it */
+    if(run.length>=2){
+      const first=run[0].lvl||0;
+      const rest=Math.min.apply(null,run.slice(1).map(b=>b.lvl||0));
+      if(first>rest)run[0].lvl=rest;
+    }
+    i=j;
+  }
+  return out;
+}
 function sermonBody(s){
   const meta=[refWithBook(s),s.category,printDateOf(s)].filter(Boolean).join(' · ');
   const out=[];
@@ -2524,7 +2593,7 @@ function sermonBody(s){
     out.push('<'+tag+st+'>'+run.map(x=>'<li>'+x+'</li>').join('')+'</'+tag+'>');
     run=null;runT=null;
   };
-  (s.blocks||[]).forEach(b=>{
+  alignedBlocks(s.blocks).forEach(b=>{
     if(b.t==='ul'||b.t==='num'){
       const lvl=Math.min(6,Math.max(0,b.lvl||0));
       if(run&&runT===b.t&&runLvl===lvl){run.push(b.h||'');return}
@@ -2634,7 +2703,7 @@ function presentVerse(b,c,v,e){
   return el;
 }
 
-let presStart=0,presTick=null,barTimer=null,wakeLock=null;
+let presStart=0,presTick=null,barTimer=null,wakeLock=null,presExitAt=0;
 /* the default size suits the screen: ~22px on a phone, ~60px on a projector */
 function autoSize(){return Math.round(Math.min(64,Math.max(22,window.innerWidth/32)))}
 function lockWake(){
@@ -2645,7 +2714,11 @@ function showBar(){
   const el=$('#pres');if(!el)return;
   el.classList.add('showbar');
   clearTimeout(barTimer);
-  barTimer=setTimeout(()=>{el.classList.remove('showbar')},2600);
+  barTimer=setTimeout(()=>{
+    el.classList.remove('showbar');
+    const pb=el.querySelector('.pb');
+    if(pb&&pb.classList.contains('more')){pb.classList.remove('more');fitPresTop()}
+  },3200);
 }
 function toggleBlank(){
   let b=$('#blank');
@@ -2683,7 +2756,6 @@ function wirePresentTouch(){
     if(e.target.closest('#pres .pb,button,a,.vref,.mk,.w,.vnote,.vpin,.pbar'))return;
     if(dt>700)return;
     if(!moved&&Math.abs(dx)<12&&Math.abs(dy)<12){
-      if(!el.classList.contains('showbar')){showBar();return}   /* first tap: show controls */
       go(t.clientX<window.innerWidth*0.38?-1:1);
       return;
     }
@@ -2699,12 +2771,15 @@ function present(){
   el.classList.remove('hide');document.body.classList.add('pres-on');
   presSer();el.scrollTop=0;
   wirePresentTouch();
-  el.addEventListener('pointermove',showBar);
-  el.addEventListener('touchstart',showBar,{passive:true});
+  if(!el._wired){
+    el._wired=1;
+    el.addEventListener('pointermove',showBar);
+    el.addEventListener('touchstart',showBar,{passive:true});
+  }
   showBar();lockWake();
   clearInterval(presTick);
   presTick=setInterval(()=>{
-    const t=$('#ptm');if(!t)return;
+    const t=$('#pres #ptm');if(!t)return;
     const sec=Math.floor((Date.now()-presStart)/1000);
     t.textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');
   },1000);
@@ -2715,32 +2790,57 @@ function pbarHtml(){
    '<button id="pv" title="Previous">‹</button><button id="nx" title="Next">›</button>'+
    '<button id="sw">'+(presMode==='ser'?'Bible':'Sermon')+'</button>'+
    '<button id="pm">A−</button><button id="pp">A+</button>'+
-   '<button id="bl" title="Blank screen (B)">Blank</button>'+
-   '<button id="fs" title="Full screen (F)">Full</button><button id="px">✕</button></div>';
+   '<button id="fs" title="Full screen (F)">Full</button><button id="px">✕</button>'+
+   '<button id="pmo" class="pmo" title="More controls" aria-label="More controls">⋯</button></div>';
 }
 function fitPresTop(){
   const el=$('#pres');if(!el)return;
   const pb=el.querySelector('.pb');
-  if(pb)el.style.paddingTop=(pb.offsetHeight+12)+'px';
+  if(!pb)return;
+  /* the strip sits at the bottom on a phone, so the room it needs goes below */
+  const atBottom=window.matchMedia('(max-width:760px)').matches;
+  if(atBottom){
+    el.style.paddingTop='';
+    el.style.paddingBottom=(pb.offsetHeight+20)+'px';
+  }else{
+    el.style.paddingBottom='';
+    el.style.paddingTop=(pb.offsetHeight+12)+'px';
+  }
 }
 function wirePbar(){
   const el=$('#pres');
+  if(!el)return;
+  /* everything here lives inside #pres - never look it up document-wide, the rest of
+     the app uses some of the same ids */
+  const q=s=>el.querySelector(s);
   fitPresTop();
   setTimeout(fitPresTop,0);
   if(!el._fit){el._fit=1;window.addEventListener('resize',fitPresTop)}
-  $('#sw').onclick=()=>{if(presMode==='ser'){presMode='bible';presBible(bs.b,bs.c)}else{presMode='ser';presSer()}};
-  $('#pm').onclick=()=>{psz=Math.max(16,psz-3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
-  $('#pp').onclick=()=>{psz=Math.min(72,psz+3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
-  $('#px').onclick=exitP;
-  const fs=$('#fs');
+  const sw=q('#sw');if(sw)sw.onclick=()=>{if(presMode==='ser'){presMode='bible';presBible(bs.b,bs.c)}else{presMode='ser';presSer()}};
+  const pm=q('#pm');if(pm)pm.onclick=()=>{psz=Math.max(16,psz-3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
+  const pp=q('#pp');if(pp)pp.onclick=()=>{psz=Math.min(72,psz+3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
+  const px=q('#px');if(px)px.onclick=exitP;
+  const fs=q('#fs');
   if(fs)fs.onclick=()=>{
     try{
       if(document.fullscreenElement)document.exitFullscreen();
       else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen();
     }catch(e){toast('Full screen is not available in this browser')}
   };
-  const bl=$('#bl');if(bl)bl.onclick=toggleBlank;
-  const prev=$('#pv'),next=$('#nx');
+  /* the folded-away controls: open, close, and close again after any of them is used */
+  const pbEl=el.querySelector('.pb');
+  const mo=q('#pmo');
+  if(mo&&pbEl)mo.onclick=()=>{
+    pbEl.classList.toggle('more');
+    showBar();fitPresTop();
+  };
+  if(pbEl)pbEl.addEventListener('click',e=>{
+    const b=e.target.closest('button');
+    if(!b||b.id==='pmo'||!pbEl.classList.contains('more'))return;
+    pbEl.classList.remove('more');
+    fitPresTop();
+  });
+  const prev=q('#pv'),next=q('#nx');
   if(prev)prev.onclick=()=>{if(presMode==='ser')stepTo(pi-1);else{stepCh(-1);presBible(bs.b,bs.c)}};
   if(next)next.onclick=()=>{if(presMode==='ser')stepTo(pi+1);else{stepCh(1);presBible(bs.b,bs.c)}};
 }
@@ -2779,15 +2879,15 @@ function paintPres(){
   const vis=$$('#pb2 .blk:not(.hid)');
   pi=Math.max(0,Math.min(pi,Math.max(0,vis.length-1)));
   vis.forEach((b,n)=>b.classList.toggle('cur',n===pi));
-  const pg=$('#pg');if(pg)pg.textContent=vis.length?(pi+1)+' / '+vis.length:'';
+  const pg=$('#pres #pg');if(pg)pg.textContent=vis.length?(pi+1)+' / '+vis.length:'';
 }
 function stepTo(i){
   const vis=$$('#pb2 .blk:not(.hid)');
-  if(!vis.length){const pb=$('#pbi');if(pb)pb.style.width='100%';return}
+  if(!vis.length){const pb=$('#pres #pbi');if(pb)pb.style.width='100%';return}
   pi=Math.max(0,Math.min(vis.length-1,i));
   vis.forEach((b,n)=>b.classList.toggle('cur',n===pi));
-  const pg=$('#pg');if(pg)pg.textContent=(pi+1)+' / '+vis.length;
-  const pbi=$('#pbi');if(pbi)pbi.style.width=Math.round((pi+1)/vis.length*100)+'%';
+  const pg=$('#pres #pg');if(pg)pg.textContent=(pi+1)+' / '+vis.length;
+  const pbi=$('#pres #pbi');if(pbi)pbi.style.width=Math.round((pi+1)/vis.length*100)+'%';
   const touch=navigator.maxTouchPoints>0;
   scrollTo(vis[pi],{block:'center',behavior:touch?'auto':'smooth'});
   showBar();
@@ -2828,6 +2928,7 @@ function presBible(b,c){
     if(vn){e.preventDefault();presentVerse(b,c,+vn.dataset.v,+vn.dataset.v);return}});
 }
 function exitP(){
+  presExitAt=Date.now();
   clearInterval(presTick);presTick=null;
   clearTimeout(barTimer);
   unlockWake();
@@ -2837,6 +2938,11 @@ function exitP(){
   document.body.classList.remove('pres-on');rememberPos();
   if(view==='bible')renderBible()
 }
+
+/* the closing tap must not fall through onto whatever sits under the overlay */
+document.addEventListener('click',e=>{
+  if(presExitAt&&Date.now()-presExitAt<450){e.preventDefault();e.stopPropagation()}
+},true);
 
 /* ================= KEYBOARD ================= */
 document.addEventListener('keydown',e=>{
