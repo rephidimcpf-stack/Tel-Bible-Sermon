@@ -478,6 +478,12 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
 .xrow b{font-size:.86em;color:var(--ac);font-weight:700}
 .xrow span{font-size:.8em;color:var(--mu);line-height:1.45}
 .xrsrc{font-size:.68em;color:var(--mu);margin-top:4px;opacity:.85}
+/* ---------- library import ---------- */
+.iprow{align-items:flex-start}
+.iprow .srowp{flex-direction:column;align-items:flex-start;gap:2px}
+.iprow .sname{white-space:normal;overflow:visible;text-overflow:clip}
+.ipdup{color:var(--mu);font-size:.72em;white-space:nowrap;padding:2px 8px;flex:0 0 auto}
+#list.drop{outline:2px dashed var(--ac);outline-offset:4px;border-radius:10px}
 /* Hover belongs to a mouse. As soon as a finger or pen touches the screen the
    html gets .touch and the sticky hover shading is switched off; every tap then
    answers with a short flash instead. */
@@ -1693,6 +1699,7 @@ function renderSer(){
   app.innerHTML=
    '<div class="grid"><div class="card" id="list">'+
      '<div class="bar"><button class="pri" id="ns">+ New sermon</button>'+
+       '<button id="im" title="Import one sermon file, or many at once">↑ Import</button>'+
        '<button id="tr" title="Deleted sermons">Trash'+((S.trash&&S.trash.length)?' ('+S.trash.length+')':'')+'</button>'+
      '</div>'+
      '<div class="sbox"><input id="q" placeholder="Search sermons…" value="'+esc(q)+'" aria-label="Search sermons">'+
@@ -1710,6 +1717,18 @@ function renderSer(){
   $('#ns').onclick=()=>{flushSave();cur=newS();orig=null;hist=[];hp=-1;pushHist();renderSer();
     setTimeout(()=>{const t=$('#ttl');if(t)t.focus()},40)};
   $('#tr').onclick=openTrash;
+  $('#im').onclick=openImport;
+  /* dropping files anywhere on the list imports them too */
+  const lb=$('#list');
+  if(lb){
+    lb.addEventListener('dragover',e=>{e.preventDefault();lb.classList.add('drop')});
+    lb.addEventListener('dragleave',e=>{if(!lb.contains(e.relatedTarget))lb.classList.remove('drop')});
+    lb.addEventListener('drop',e=>{
+      e.preventDefault();lb.classList.remove('drop');
+      const fs=Array.prototype.slice.call((e.dataTransfer&&e.dataTransfer.files)||[]);
+      if(fs.length)readImport(fs);
+    });
+  }
   $('#so').value=sortBy;
   $('#so').onchange=e=>{sortBy=e.target.value;listLimit=80;renderList()};
   $('#fs').value=fSer;
@@ -2561,7 +2580,13 @@ function showBar(){
 }
 function toggleBlank(){
   let b=$('#blank');
-  if(!b){b=document.createElement('div');b.id='blank';document.body.append(b)}
+  if(!b){
+    b=document.createElement('div');b.id='blank';document.body.append(b);
+    /* a phone has no B key: tapping the black screen brings the slide back */
+    b.addEventListener('click',()=>{
+      if(b.classList.contains('on')){b.classList.remove('on');showBar()}
+    });
+  }
   b.classList.toggle('on');
 }
 /* touch: tap right to advance, left to go back, or swipe */
@@ -2800,6 +2825,102 @@ window.addEventListener('beforeunload',e=>{
   }
 });
 
+
+/* ---------- import sermons: one file or a whole batch ---------- */
+function openImport(){
+  let inp=$('#imf');
+  if(!inp){
+    inp=document.createElement('input');
+    inp.type='file';inp.id='imf';inp.className='hide';
+    inp.accept='.json,application/json';inp.multiple=true;
+    document.body.append(inp);
+    inp.onchange=e=>{
+      const fs=Array.prototype.slice.call(e.target.files||[]);
+      e.target.value='';
+      if(fs.length)readImport(fs);
+    };
+  }
+  inp.click();
+}
+function looksLikeSermon(x){
+  return !!x&&typeof x==='object'&&!Array.isArray(x)&&
+    (typeof x.title==='string'||Array.isArray(x.blocks));
+}
+function sermonsFromJSON(j){
+  if(!j||typeof j!=='object')return [];
+  if(Array.isArray(j))return j.filter(looksLikeSermon);
+  if(Array.isArray(j.sermons))return j.sermons.filter(looksLikeSermon);
+  if(looksLikeSermon(j))return [j];
+  return [];
+}
+function sermonSig(s){
+  return String(s.title||'').trim()+'|'+
+    JSON.stringify((s.blocks||[]).map(b=>[b&&b.t,b&&b.h]));
+}
+function cleanSermon(s){
+  const o=Object.assign({},s);
+  o.id=String(o.id||uid());
+  const bl=(Array.isArray(o.blocks)?o.blocks:[])
+    .filter(b=>b&&typeof b==='object'&&typeof b.t==='string');
+  o.blocks=bl.length?bl:[{t:'p',h:''}];
+  delete o.isNew;delete o.deletedAt;
+  return o;
+}
+async function readImport(files){
+  const found=[],bad=[];
+  for(let i=0;i<files.length;i++){
+    const f=files[i];
+    let j=null;
+    try{j=JSON.parse(await f.text())}catch(e){bad.push(f.name);continue}
+    const list=sermonsFromJSON(j);
+    if(!list.length){bad.push(f.name);continue}
+    list.forEach(s=>found.push(cleanSermon(s)));
+  }
+  if(!found.length){
+    toast(bad.length===1?'That file held no sermons':'Those files held no sermons');
+    return;
+  }
+  showImportPreview(found,bad);
+}
+function showImportPreview(found,bad){
+  const have=new Set((S.sermons||[]).map(s=>s.id));
+  const haveSig=new Set((S.sermons||[]).map(sermonSig));
+  const seen=new Set(),seenSig=new Set(),fresh=[];
+  let dup=0;
+  found.forEach(s=>{
+    const sig=sermonSig(s);
+    if(have.has(s.id)||seen.has(s.id)||haveSig.has(sig)||seenSig.has(sig)){dup++;return}
+    seen.add(s.id);seenSig.add(sig);fresh.push(s);
+  });
+  const rows=found.slice(0,40).map(s=>{
+    const meta=[s.series,s.ref,s.category].filter(Boolean).join(' · ');
+    return '<div class="sroww iprow"><span class="srowp">'+
+      '<span class="sname">'+esc(s.title||'Untitled')+'</span>'+
+      (meta?'<small>'+esc(meta)+'</small>':'')+'</span>'+
+      ((have.has(s.id)||haveSig.has(sermonSig(s)))?'<small class="ipdup">already here</small>':'')+'</div>';
+  }).join('');
+  modal('<b>Import sermons</b>'+
+    '<p class="hint">'+found.length+' sermon'+(found.length===1?'':'s')+' found'+
+      (bad.length?' · '+bad.length+' file'+(bad.length===1?'':'s')+' could not be read':'')+'.</p>'+
+    '<div class="srlist">'+rows+'</div>'+
+    (found.length>40?'<p class="hint">and '+(found.length-40)+' more</p>':'')+
+    (dup?'<p class="hint">'+dup+' already in your library will be skipped.</p>':'')+
+    '<div class="row"><button class="x">Cancel</button>'+
+      '<button class="pri ok"'+(fresh.length?'':' disabled')+'>Import '+(fresh.length||'')+'</button></div>',
+    (d,close)=>{
+      d.querySelector('.x').onclick=close;
+      d.querySelector('.ok').onclick=()=>{
+        close();
+        if(!fresh.length)return;
+        if(cur)flushSave();
+        const now=Date.now();
+        fresh.slice().reverse().forEach(s=>{s.updated=now;S.sermons.unshift(s)});
+        save();renderSer();
+        toast('Imported '+fresh.length+' sermon'+(fresh.length===1?'':'s')+
+          (dup?' · '+dup+' skipped':''));
+      };
+    });
+}
 
 /* ================= cross references ================= */
 /* Source: OpenBible.info Bible cross-references, CC BY. Only links with a vote
