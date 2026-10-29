@@ -553,7 +553,7 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 
 .bmrow{padding:6px;border-bottom:1px solid var(--bd);cursor:pointer}
 .bmrow:hover{background:var(--ac2)}
-#pres{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;touch-action:manipulation;-webkit-user-select:none;user-select:none;padding:calc(env(safe-area-inset-top,0px) + 54px) 5vw 80px}
+#pres{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;touch-action:pan-y;overscroll-behavior:contain;-webkit-user-select:none;user-select:none;padding:calc(env(safe-area-inset-top,0px) + 54px) 5vw 80px}
 #pres .pb{position:fixed;top:0;left:0;right:0;z-index:42;display:flex;gap:6px;justify-content:flex-end;align-items:center;
  flex-wrap:nowrap;padding:calc(env(safe-area-inset-top,0px) + 6px) 10px 6px;background:var(--bg);
  border-bottom:1px solid var(--bd);box-shadow:0 1px 4px rgba(0,0,0,.05)}
@@ -1014,17 +1014,18 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     box-shadow:0 -6px 20px rgba(0,0,0,.08)}
   #pres:not(.showbar) .pb{transform:translateY(8px);pointer-events:none}
-  #pres .pb button{min-height:40px;font-size:13.5px;padding:5px 9px;background:transparent;border-color:transparent}
-  #pres .pb #pv,#pres .pb #nx{min-width:64px;min-height:48px;font-size:22px;line-height:1;
+  #pres .pb button{min-height:44px;font-size:13.5px;padding:6px 10px;background:transparent;border-color:transparent;
+    -webkit-tap-highlight-color:transparent}
+  #pres .pb #pv,#pres .pb #nx{min-width:68px;min-height:52px;font-size:22px;line-height:1;
     background:var(--sf);border:1px solid var(--bd);border-radius:12px}
   #pres .pb #pv{order:1}
   #pres .pb .pg{order:2;margin:0;flex:1 1 auto;text-align:center;font-size:.88em;opacity:.85}
   #pres .pb #nx{order:3}
   #pres .pb #pmo{order:4;display:inline-block;min-width:44px;min-height:48px;font-size:18px;
     background:var(--sf);border:1px solid var(--bd);border-radius:12px}
-  #pres .pb #ptm,#pres .pb #sw,#pres .pb #pm,#pres .pb #pp,
+  #pres .pb #ptm,#pres .pb #sw,#pres .pb #pfo,#pres .pb #pm,#pres .pb #pp,
   #pres .pb #fs,#pres .pb #px{display:none;order:6}
-  #pres .pb.more #ptm,#pres .pb.more #sw,#pres .pb.more #pm,#pres .pb.more #pp,
+  #pres .pb.more #ptm,#pres .pb.more #sw,#pres .pb.more #pfo,#pres .pb.more #pm,#pres .pb.more #pp,
   #pres .pb.more #fs,#pres .pb.more #px{display:inline-block}
   #pres .pb.more::before{content:"";flex:0 0 100%;order:5}
   #pres .pb.more button{font-size:13px;padding:5px 8px;min-height:36px}
@@ -1395,6 +1396,199 @@ main{padding:16px 14px 40px}
 .pres-note-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .pres-note-actions button{min-height:40px;padding:8px 16px;font-size:1em}
 
+
+/* Presentation focus stage: one point per screen, quiet chrome */
+#pres.pres-ser.focus-one .pc .blk:not(.cur){display:none!important}
+#pres.pres-ser.focus-one .pc .blk.cur{
+  opacity:1!important;margin:0;padding:0;box-shadow:none;min-height:0;
+  display:flex;align-items:flex-start;
+  animation:stageIn .34s cubic-bezier(.22,.61,.36,1) both}
+#pres.pres-ser.focus-one .pc .blk.cur .bt{
+  color:var(--tx)!important;font-size:1em;line-height:1.52}
+/* the sermon header: a title card on the first point, a quiet running head after it */
+#pres.pres-ser.focus-one .pc>.pser,
+#pres.pres-ser.focus-one .pc>h1{display:block}
+#pres.pres-ser.focus-one .pc>.muted{display:none}
+#pres.pres-ser.focus-one:not(.focus-deep) .pc>.muted{display:block}
+/* the floating point pill is replaced by the counter under the stage */
+#pres.pres-ser.focus-one .pres-spot{display:none}
+/* text points start flush with the accent rule — the marker gutter is for lists only */
+#pres.pres-ser.focus-one .pc .blk.cur:not([data-t=ul]):not([data-t=num]):not([data-t=toggle]):not([data-t=todo]) .mk{display:none}
+#pres.pres-ser.focus-one .pc .blk.cur::after{left:-14px;width:3px;top:6px;bottom:6px;opacity:1}
+#pres.pres-ser:not(.focus-one) .pc .blk.cur::after{display:none}
+/* quotes and callouts carry their own left rule — no doubled bar */
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=quote]::after,
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=callout]::after{display:none}
+#pres.pres-ser .pres-spot{
+  position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);
+  z-index:45;pointer-events:none;
+  background:color-mix(in srgb,var(--sf) 88%,transparent);
+  border:1px solid var(--bd);border-radius:999px;
+  padding:4px 12px;font-size:13px;font-weight:700;
+  color:var(--ac);letter-spacing:.02em;
+  box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#pres.pres-bible .pres-spot{display:none}
+@media(max-width:760px){
+  #pres.pres-ser .pres-spot{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 64px)}
+}
+
+
+/* =====================================================================
+   FOCUS STAGE — professional, one-point-at-a-time presentation layer
+   Applies only while the sermon presentation runs in Focus mode.
+   ===================================================================== */
+#pres.pres-ser.focus-one{
+  display:flex;flex-direction:column;overflow:auto;overscroll-behavior:contain;
+  padding:calc(env(safe-area-inset-top,0px) + 40px) 7vw calc(env(safe-area-inset-bottom,0px) + 52px);
+  background:radial-gradient(125% 95% at 50% -10%,color-mix(in srgb,var(--ac) 6%,var(--bg)),var(--bg) 62%)}
+#pres.pres-ser.focus-one .pc{
+  margin:auto 0;max-width:min(1080px,84vw);
+  font-size:calc(var(--ps,28px) * var(--fit,1));
+  line-height:1.52;letter-spacing:.002em}
+@keyframes stageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  #pres.focus-one .pc .blk.cur{animation:none}
+}
+#pres.focus-one .mk{opacity:.5;color:var(--ac);font-size:.85em;padding-top:.15em}
+
+/* block language on the stage */
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=h1] .bt{font-size:1.85em;font-weight:800;line-height:1.18;letter-spacing:-.012em}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=h2] .bt{font-size:1.48em;font-weight:700;line-height:1.24;letter-spacing:-.008em}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=h3] .bt{font-size:1.2em;font-weight:700;line-height:1.3}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=quote] .bt{
+  border-left:3px solid var(--ac);padding:0 0 0 .6em;font-style:normal;
+  font-size:1.05em;line-height:1.55;color:color-mix(in srgb,var(--tx) 92%,var(--bg))}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=callout] .bt{
+  background:color-mix(in srgb,var(--ac) 9%,var(--bg));
+  border-left:3px solid var(--ac);border-radius:3px;padding:.55em .8em;line-height:1.5}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=ul] .bt,
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=num] .bt{padding-left:.1em}
+#pres.pres-ser.focus-one .pc .blk.cur[data-t=hr]{border-color:color-mix(in srgb,var(--ac) 35%,var(--bd));min-height:0;margin:.55em 0}
+
+/* title card on the first point, quiet running head after it */
+#pres:not(.focus-deep) .pc>.pser{font-size:.4em;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 .55em;opacity:.95}
+#pres:not(.focus-deep) .pc>h1{font-size:1.62em;font-weight:800;line-height:1.14;
+  letter-spacing:-.015em;margin:0 0 .32em}
+#pres:not(.focus-deep) .pc>.muted{font-size:.46em;letter-spacing:.09em;text-transform:uppercase;
+  margin:0 0 1.05em;padding-bottom:.85em;
+  border-bottom:1px solid color-mix(in srgb,var(--bd) 85%,transparent)}
+#pres.focus-deep .pc>.pser{font-size:.3em;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.62;margin:0 0 .75em}
+#pres.focus-deep .pc>h1{font-size:.36em;font-weight:600;opacity:.5;line-height:1.3;margin:0 0 1em}
+#pres.focus-deep .pc>.muted{display:none}
+
+/* slim rail + point counter, always present, never in the way */
+#pres .pbar{top:auto;bottom:0;height:2px;opacity:1;
+  background:color-mix(in srgb,var(--bd) 55%,transparent)}
+#pres .pbar i{background:var(--ac);transition:width .28s cubic-bezier(.22,.61,.36,1)}
+#pres .pfoot{position:fixed;left:0;right:0;bottom:0;z-index:41;display:flex;justify-content:center;
+  padding:0 0 calc(env(safe-area-inset-bottom,0px) + 12px);
+  pointer-events:none;opacity:0;transition:opacity .3s ease}
+#pres.focus-one .pfoot{opacity:.42}
+#pres .pfoot span{font-size:11.5px;letter-spacing:.16em;color:var(--mu);
+  font-variant-numeric:tabular-nums;text-transform:uppercase}
+@media(max-width:760px){
+  #pres .pfoot{display:none}
+  #pres.pres-ser.focus-one{padding:calc(env(safe-area-inset-top,0px) + 22px) 6vw calc(env(safe-area-inset-bottom,0px) + 40px)}
+  #pres.pres-ser.focus-one .pc{max-width:100%;line-height:1.55}
+  #pres:not(.focus-deep) .pc>h1{font-size:1.4em}
+  #pres.pres-ser.focus-one .pc .blk.cur[data-t=h1] .bt{font-size:1.55em}
+  #pres.pres-ser.focus-one .pc .blk.cur[data-t=h2] .bt{font-size:1.32em}
+}
+
+/* Bible in presentation: calm, readable, projector-friendly */
+#pres.pres-bible .pc{max-width:min(980px,84vw);line-height:1.72}
+#pres.pres-bible .verse{margin:0 0 .62em;padding:0;border-radius:0;background:transparent}
+#pres.pres-bible .verse:hover{background:transparent}
+#pres.pres-bible .vn{font-size:.52em;font-weight:700;color:var(--ac);opacity:.7;
+  margin-right:.5em;vertical-align:.4em;letter-spacing:.02em}
+#pres.pres-bible .verse.serm{
+  box-shadow:none;border-left:2px solid var(--ac);padding-left:.55em;
+  background:color-mix(in srgb,var(--ac) 5%,var(--bg));border-radius:2px}
+
+/* the single-verse overlay opened from a chapter */
+.vov .vovtx{line-height:1.68;letter-spacing:.002em}
+.vov .vovbar{border-bottom-color:color-mix(in srgb,var(--bd) 80%,transparent)}
+
+/* touch: no grey flash, and never let a tap select text by accident */
+#pres,#pres .pc,#pres .pbt,#pres button,#pres a,#pres .verse,#pres .bt{
+  -webkit-tap-highlight-color:transparent}
+#pres .pb button,#pres .pb select{touch-action:manipulation}
+@media(max-width:760px){
+  #pres .pb #pmo{min-width:48px;min-height:52px}
+  #pres .pbar{height:3px}
+}
+
+/* ---------- controls grip: the only way to open the dock with a finger ---------- */
+#pres .pgrip{
+  position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 4px);
+  transform:translateX(-50%);z-index:44;
+  width:72px;height:26px;margin:0;padding:0;border:0;background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:.42;transition:opacity .18s ease;
+  -webkit-tap-highlight-color:transparent}
+#pres .pgrip::before{
+  content:"";display:block;width:44px;height:3px;border-radius:2px;
+  background:color-mix(in srgb,var(--mu) 70%,transparent)}
+#pres .pgrip:active{opacity:.85}
+#pres.showbar .pgrip{opacity:0;pointer-events:none}
+@media(min-width:761px) and (pointer:fine){
+  /* a mouse has the top bar — no grip needed */
+  #pres .pgrip{display:none}
+}
+@media(max-width:760px){
+  #pres .pgrip{bottom:calc(env(safe-area-inset-bottom,0px) + 2px);height:28px}
+}
+
+/* a phone held sideways is still a phone: keep the dock at the bottom */
+@media(pointer:coarse) and (min-width:761px){
+  #pres{padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
+  #pres .pb{
+    top:auto;bottom:0;flex-wrap:wrap-reverse;justify-content:center;align-items:center;
+    gap:6px;padding:6px 10px calc(env(safe-area-inset-bottom,0px) + 6px);
+    border-bottom:none;border-top:1px solid color-mix(in srgb,var(--bd) 80%,transparent);
+    background:color-mix(in srgb,var(--bg) 94%,transparent);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  #pres:not(.showbar) .pb{transform:translateY(8px);pointer-events:none}
+  #pres .pfoot{display:none}
+  #pres .pb button{min-height:44px}
+}
+
+/* ---------- backup reminder ---------- */
+.bkn{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;
+  margin:0 0 12px;padding:10px 11px;border-radius:10px;
+  background:color-mix(in srgb,var(--ac) 7%,var(--sf));
+  border:1px solid color-mix(in srgb,var(--ac) 26%,var(--bd));
+  font-size:.85em;line-height:1.4}
+.bkn .bkt{flex:1 1 150px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.bkn .bkt b{color:var(--ac);font-weight:700;font-size:1.02em}
+.bkn .bks{color:var(--mu);font-size:.94em;line-height:1.42}
+.bkn .bkb{display:flex;gap:6px;flex:0 0 auto;flex-wrap:wrap}
+.bkn button{min-height:32px;padding:5px 11px;font-size:.95em}
+.bkn .bkl{background:transparent;border-color:transparent;color:var(--mu);font-weight:500;padding:5px 7px}
+@media(max-width:520px){
+  .bkn .bkt{flex:1 1 100%}
+  .bkn .bkb{flex:1 1 100%;justify-content:flex-end}
+}
+/* ---------- edited-verse chip ---------- */
+.vedit{display:inline-block;font-size:.56em;background:transparent;color:var(--mu);
+  border:1px dashed color-mix(in srgb,var(--mu) 45%,var(--bd));border-radius:999px;
+  padding:0 6px;margin-right:6px;vertical-align:.15em;letter-spacing:.02em;cursor:default}
+#pres .vedit{display:none!important}
+
+/* ---------- bookmark star in the verse dialog ---------- */
+.bmstar{width:28px;height:28px;border-radius:50%;padding:0;border:2px solid var(--bd);
+  background:var(--sf);color:var(--mu);font-size:14px;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center}
+.bmstar.sel{color:var(--ac);border-color:var(--ac);background:var(--ac2)}
+.edrest{margin-top:8px;font-size:.9em;padding:6px 12px;min-height:34px}
+@media(max-width:520px){
+  .bmstar{width:32px;height:32px;font-size:16px}
+  .bkn .bkt{flex:1 1 100%}
+  .bkn .bkb{flex:1 1 100%;justify-content:flex-end}
+}
 </style></head><body>
 <header>
  <h1><svg class="logo" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" style="fill:var(--ac)"/><path d="M16 9.5c-2.2-1.6-5-2.2-8-2v14.2c3-.2 5.8.4 8 2 2.2-1.6 5-2.2 8-2V7.5c-3-.2-5.8.4-8 2zM16 9.5v14.2" style="fill:none;stroke:var(--on-ac);stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round"/></svg><span>Telugu Bible</span></h1>
@@ -1810,26 +2004,93 @@ try{
 $('#fn').onchange=e=>{S.set.font=e.target.value;applySet();save()};
 $('#fm').onclick=()=>{S.set.size=Math.max(14,(S.set.size||20)-2);applySet();save()};
 $('#fp').onclick=()=>{S.set.size=Math.min(40,(S.set.size||20)+2);applySet();save()};
-$('#wct').onchange=e=>{S.set.wclick=e.target.checked?1:0;save();if(view==='bible')renderBible()};
+$('#wct').onchange=e=>{S.set.wclick=e.target.checked?1:0;
+  document.body.classList.toggle('wmode',!!S.set.wclick);
+  save();if(view==='bible')renderBible()};
+
+/* ---------- the font list tells the truth about this device ----------
+   The Telugu families come from a web-font link; offline, or on a device that
+   never cached them, choosing one silently does nothing. So when the menu is
+   opened, check each family and grey out the ones this device cannot show. */
+function fontCanvasOK(fam){
+  try{
+    const c=document.createElement('canvas').getContext('2d');
+    const s='కృపయే మార్గము 0123';
+    c.font='40px monospace';const w0=c.measureText(s).width;
+    c.font='40px "'+String(fam).replace(/"/g,'')+'", monospace';const w1=c.measureText(s).width;
+    return Math.abs(w0-w1)>0.5;
+  }catch(e){return true}
+}
+async function fontUsable(fam){
+  if(document.fonts&&document.fonts.load){
+    try{const f=await document.fonts.load('16px "'+fam+'"','కృప');if(f&&f.length)return true}catch(e){}
+  }
+  return fontCanvasOK(fam);
+}
+let fontCheckedAt=0;
+async function markFonts(){
+  const sel=$('#fn');if(!sel)return;
+  if(Date.now()-fontCheckedAt<60000)return;
+  fontCheckedAt=Date.now();
+  const opts=[...sel.options];
+  const res={};
+  for(const o of opts)res[o.value]=await fontUsable(o.value);
+  const avail=opts.filter(o=>res[o.value]);
+  opts.forEach(o=>{
+    o.disabled=!res[o.value];
+    o.title=res[o.value]?'':o.value+' is not installed on this device';
+  });
+  if(avail.length&&!res[S.set.font]){
+    const fb=avail[0].value;
+    S.set.font=fb;save();applySet();
+    toast('That font is not on this device — using '+fb);
+  }else if(!avail.length){
+    sel.title='No bundled Telugu font is installed here — the system font is used';
+  }
+}
+(function(){
+  const sel=$('#fn');if(!sel)return;
+  const go=()=>markFonts();
+  sel.addEventListener('focus',go);
+  sel.addEventListener('pointerdown',go);
+})();
 
 /* ---------- files ---------- */
 async function saveFile(name,data,type,quiet){
   const blob=new Blob([data],{type:type||'application/octet-stream'});
   if(window.showSaveFilePicker){try{const h=await showSaveFilePicker({suggestedName:name});
-    const w=await h.createWritable();await w.write(blob);await w.close();if(!quiet)toast('Saved');return}
-    catch(e){if(e&&(e.name==='AbortError'||e.name==='NotAllowedError'))return}}
+    const w=await h.createWritable();await w.write(blob);await w.close();if(!quiet)toast('Saved');return true}
+    catch(e){if(e&&(e.name==='AbortError'||e.name==='NotAllowedError'))return false}}
   try{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;
     document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
-    if(!quiet)toast('Download started')}catch(e){toast('Could not save the file')}}
+    if(!quiet)toast('Download started');return true}catch(e){toast('Could not save the file');return false}}
 
 /* ---------- backup / restore ---------- */
-$('#bk').onclick=()=>{
+async function backupNow(){
   flushSave();
   const json=JSON.stringify(S);
   const mb=json.length/1048576;
-  saveFile('telugu-bible-backup-'+new Date().toISOString().slice(0,10)+'.json',json,'application/json',1);
-  toast('Backup of '+(S.sermons||[]).length+' sermons — '+(mb<1?Math.round(json.length/1024)+' KB':mb.toFixed(1)+' MB'));
-};
+  const ok=await saveFile('telugu-bible-backup-'+new Date().toISOString().slice(0,10)+'.json',json,'application/json',1);
+  if(ok){
+    S.lastBackup=Date.now();delete S.backupSnooze;save();
+    toast('Backup of '+(S.sermons||[]).length+' sermons — '+(mb<1?Math.round(json.length/1024)+' KB':mb.toFixed(1)+' MB'));
+  }
+  return ok;
+}
+$('#bk').onclick=()=>backupNow();
+/* the sermon library lives on one device, so nudge a backup now and then */
+function backupNotice(){
+  if(!(S.sermons||[]).length)return '';
+  if(S.backupSnooze&&Date.now()-S.backupSnooze<7*864e5)return '';
+  const last=S.lastBackup||0;
+  if(last&&Date.now()-last<14*864e5)return '';
+  const days=last?Math.floor((Date.now()-last)/864e5):0;
+  const sub=last?('Last backup was '+days+' days ago.'):'Nothing is backed up yet.';
+  return '<div class="bkn" id="bkn">'+
+    '<span class="bkt"><b>Back up your sermons</b><span class="bks">'+sub+' One file keeps every sermon, note and highlight safe.</span></span>'+
+    '<span class="bkb"><button id="bknow" class="pri">Back up</button>'+
+    '<button id="bklater" class="bkl">Later</button></span></div>';
+}
 /* bring a backup in without losing what is already here */
 function mergeBackup(j){
   let added=0,updated=0;
@@ -2038,6 +2299,7 @@ function bibleHTML(b,c){
     }
     return '<div class="verse'+(hl?' vh'+hl:'')+(mk.cover[v]?' serm':'')+'" data-v="'+v+'">'+pin+
       '<span class="vn" data-v="'+v+'">'+v+'</span>'+
+      (S.edits[k]?'<span class="vedit" title="This verse was edited on this device">edited</span>':'')+
       (S.notes[k]?'<span class="vnote" data-k="'+esc(k)+'" title="Commentary — tap to read">note</span>':'')+
       (S.bm[k]?'<span class="bmk" title="Bookmark">★</span>':'')+inner+
       (S.set.xrefs?xrefChips(b,c,v,3):'')+'</div>';
@@ -2263,12 +2525,14 @@ function verseDialog(b,c,v){
      '<div class="ntg ntg-verse"><span class="ntgl">Verse mark</span><div class="ntbb nt-sw">'+
        VCOL.map((col,i)=>i?'<button type="button" class="sw'+(curHl===i?' sel':'')+'" data-h="'+i+'" style="background:'+col+'" title="Mark verse '+hlNames[i]+'"></button>':'').join('')+
        '<button type="button" class="sw none'+(curHl===0?' sel':'')+'" data-h="0" title="Clear verse mark">✕</button>'+
+       '<button type="button" class="bmstar'+(S.bm[k]?' sel':'')+'" title="Save this verse to the Saved tab">\u2605</button>'+
      '</div></div>'+
    '</div>'+
    '<div class="cmt" contenteditable="true" data-ph="Write a commentary…">'+cleanHTML(S.notes[k]||'')+'</div></div>'+
    xrefRows(b,c,v,8)+
    '<details class="vtedit"><summary>Edit the verse text <span class="muted">(this device only)</span></summary>'+
-   '<textarea class="ed2" rows="3">'+esc(t)+'</textarea></details>'+
+   '<textarea class="ed2" rows="3">'+esc(t)+'</textarea>'+
+     (S.edits[k]?'<button type="button" class="edrest">Restore the original text</button>':'')+'</details>'+
    '<div class="row wrap dfoot"><button class="ls2">\u25B6 Listen</button>'+
      '<button class="cp">Copy</button>'+
      '<button class="ins">+ Add to sermon</button>'+
@@ -2280,6 +2544,18 @@ function verseDialog(b,c,v){
       d.querySelectorAll('.ntb .sw').forEach(x=>x.classList.toggle('sel',(+x.dataset.h||0)===h));
       renderBible();
     });
+    const bmB=d.querySelector('.bmstar');
+    if(bmB)bmB.onclick=()=>{
+      if(S.bm[k])delete S.bm[k];else S.bm[k]=1;
+      save();renderBible();
+      bmB.classList.toggle('sel',!!S.bm[k]);
+      toast(S.bm[k]?'Saved to the Saved tab':'Removed from saved verses');
+    };
+    const edR=d.querySelector('.edrest');
+    if(edR)edR.onclick=()=>{
+      d.querySelector('.ed2').value=((BASE[book]||{})[c]||{})[v]||'';
+      toast('Original text restored \u2014 press Save');
+    };
     d.querySelector('.cp').onclick=()=>copyText(t+'\n— '+TE[b]+' '+c+':'+v);
     d.querySelector('.ls2').onclick=()=>{close();ttsStart(b,c,v)};
     d.querySelectorAll('.xrow[data-b]').forEach(r=>r.onclick=()=>{
@@ -2784,6 +3060,7 @@ function renderSer(){
        '<button id="im" title="Import one sermon file, or many at once">↑ Import</button>'+
        '<button id="tr" title="Deleted sermons">Trash'+((S.trash&&S.trash.length)?' ('+S.trash.length+')':'')+'</button>'+
      '</div>'+
+     backupNotice()+
      '<div class="sbox"><input id="q" placeholder="Search sermons…" value="'+esc(q)+'" aria-label="Search sermons">'+
        '<button id="qc" class="qclr" title="Clear">✕</button></div>'+
      '<div class="fbar">'+
@@ -2796,6 +3073,10 @@ function renderSer(){
      '<div class="lcount" id="count"></div>'+
      '<div id="ls"></div>'+
    '</div><div id="ed"></div></div>';
+  const bn=$('#bknow');
+  if(bn)bn.onclick=()=>{backupNow().then(ok=>{if(ok)renderSer()})};
+  const bl8=$('#bklater');
+  if(bl8)bl8.onclick=()=>{S.backupSnooze=Date.now();save();const n=$('#bkn');if(n)n.remove()};
   $('#ns').onclick=()=>{flushSave();cur=newS();orig=null;hist=[];hp=-1;pushHist();renderSer();
     setTimeout(()=>{const t=$('#ttl');if(t)t.focus()},40)};
   $('#tr').onclick=openTrash;
@@ -4032,6 +4313,16 @@ function lockWake(){
   try{if(navigator.wakeLock&&!wakeLock)navigator.wakeLock.request('screen').then(w=>{wakeLock=w}).catch(()=>{})}catch(e){}
 }
 function unlockWake(){try{if(wakeLock){wakeLock.release();wakeLock=null}}catch(e){}}
+/* a phone held sideways is still a phone: treat coarse pointers as touch UI */
+const touchUI=()=>window.matchMedia('(max-width:760px)').matches||window.matchMedia('(pointer:coarse)').matches;
+function hideBarNow(){
+  const el=$('#pres');if(!el)return;
+  clearTimeout(barTimer);
+  el.classList.remove('showbar');
+  const pb=el.querySelector('.pb');
+  if(pb)pb.classList.remove('more');
+  fitPresTop();
+}
 function showBar(ms){
   const el=$('#pres');if(!el)return;
   el.classList.add('showbar');
@@ -4062,67 +4353,121 @@ function wirePresentTouch(){
   const el=$('#pres');
   if(el._tw)return;
   el._tw=1;
-  let sx=0,sy=0,st=0,moved=false;
+  /* gesture tuning — a tap must never be mistaken for a swipe, and vice versa */
+  const SLOP=16;      /* px a finger may drift and still count as a tap */
+  const TAP_MS=900;   /* a slow, deliberate tap is still a tap */
+  const SWIPE=44;     /* px of sideways travel before it is a swipe */
+  const EDGE=24;      /* leave the system back-swipe gutter alone */
+  const HOLD=480;     /* press and hold to bring the controls back */
+  let sx=0,sy=0,st=0,moved=false,multi=false,handled=false,holdT=null;
+
   const go=dir=>{
     if(presMode==='ser')stepTo(pi+dir);
     else{stepCh(dir);presBible(bs.b,bs.c)}
   };
+  const tick=()=>{try{if(navigator.vibrate)navigator.vibrate(6)}catch(e){}};
+  /* anything the app itself should react to — never a slide change */
+  const chrome=t=>!!(t&&t.closest&&t.closest(
+    '#pres .pb,#pres .pbar,#pres .pfoot,#pres .bar,#pres .chstrip,button,a,select,input,label,'+
+    '.vref,.mk,.vnote,.vpin,.vpk,.bmk,.vn,.ch,.tseg,.wpop,#pres-note,.wc,.w.has'));
+  const clearHold=()=>{if(holdT){clearTimeout(holdT);holdT=null}};
+
   el.addEventListener('touchstart',e=>{
+    clearHold();
     const t=e.touches[0];if(!t)return;
-    sx=t.clientX;sy=t.clientY;st=Date.now();moved=false;
-    showBar();
+    multi=e.touches.length>1;
+    sx=t.clientX;sy=t.clientY;st=Date.now();moved=false;handled=false;
+    if(multi)return;
+    holdT=setTimeout(()=>{
+      if(!moved&&!handled){handled=true;showBar(3600);tick()}
+    },HOLD);
   },{passive:true});
+
   el.addEventListener('touchmove',e=>{
     const t=e.touches[0];if(!t)return;
-    if(Math.abs(t.clientX-sx)>12||Math.abs(t.clientY-sy)>12)moved=true;
+    if(Math.abs(t.clientX-sx)>SLOP||Math.abs(t.clientY-sy)>SLOP){moved=true;clearHold()}
   },{passive:true});
+
+  el.addEventListener('touchcancel',()=>{clearHold();moved=true});
+
   el.addEventListener('touchend',e=>{
-    const t=e.changedTouches[0];if(!t)return;
+    clearHold();
+    const t=e.changedTouches[0];
+    if(!t||multi||handled)return;
     const dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
-    /* word note / controls: open note, do not change slide */
-    const wc=e.target.closest('.wc');
-    if(wc&&!moved&&Math.abs(dx)<20&&Math.abs(dy)<20){
+    const target=e.target;
+
+    /* a tap on a control, link or note belongs to the app */
+    if(chrome(target)){
+      if(!moved&&Math.abs(dx)<=SLOP&&Math.abs(dy)<=SLOP){
+        const wc=target.closest('.wc');
+        if(wc){e.preventDefault();wcShowRead(wc);return}
+        const wh=target.closest('.w.has');
+        if(wh&&wh.dataset.k){e.preventDefault();showWordNote(wh,wh.dataset.k);return}
+      }
+      return;
+    }
+
+    const isTap=Math.abs(dx)<=SLOP&&Math.abs(dy)<=SLOP&&dt<=TAP_MS;
+
+    /* the dock is open: a tap on the text only closes it — it never skips a point */
+    if(el.classList.contains('showbar')){
+      e.preventDefault();hideBarNow();return;
+    }
+
+    if(isTap){
+      if(sx<EDGE||sx>window.innerWidth-EDGE)return;      /* system edge gesture */
       e.preventDefault();
-      wcShowRead(wc);
+      go(sx<window.innerWidth*0.3?-1:1);
+      tick();
       return;
     }
-    const wh=e.target.closest('.w.has');
-    if(wh&&wh.dataset.k&&!moved&&Math.abs(dx)<20&&Math.abs(dy)<20){
+
+    /* a clear sideways drag changes the point; a vertical drag is left to scrolling */
+    if(Math.abs(dx)>=SWIPE&&Math.abs(dx)>Math.abs(dy)*1.6){
       e.preventDefault();
-      showWordNote(wh,wh.dataset.k);
-      return;
+      go(dx<0?1:-1);
+      tick();
     }
-    if(e.target.closest('#pres .pb,button,a,.vref,.mk,.vnote,.vpin,.pbar,.wpop,#pres-note'))return;
-    if(dt>700)return;
-    if(!moved&&Math.abs(dx)<12&&Math.abs(dy)<12){
-      go(t.clientX<window.innerWidth*0.38?-1:1);
-      return;
-    }
-    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.4)go(dx<0?1:-1);
   },{passive:false});
 }
+
 function present(){
   if(!cur)return;
-  presMode='ser';pi=0;
+  presMode='ser';
+  /* entry point: start at the paragraph you were editing, not always the first */
+  let start=0;
+  try{
+    const idx=(typeof currentBlockIndex==='function')?currentBlockIndex():curBlk;
+    if(typeof idx==='number'&&idx>=0)start=idx;
+  }catch(e){start=typeof curBlk==='number'?curBlk:0}
+  window._presSerPi=start;
+  if(typeof window._presFocusOne==='undefined')window._presFocusOne=true;
+  pi=start;
   psz=S.set.psize||autoSize();
   presStart=Date.now();
   const el=$('#pres');
   el.classList.remove('hide');document.body.classList.add('pres-on');
-  presSer();el.scrollTop=0;
+  el.classList.add('focus-one');
+  presSer(true);/* keep entry point */
+  el.scrollTop=0;
   wirePresentTouch();
   if(!el._wired){
     el._wired=1;
     el.addEventListener('pointermove',e=>{
-      if(window.matchMedia('(max-width:760px)').matches)return;
+      /* a finger is not a mouse: dragging near the top must never pop the bar open */
+      if(touchUI())return;
+      if(e.pointerType&&e.pointerType!=='mouse')return;
       if(e.clientY<56)showBar();
     });
+    /* touch is handled in one place — wirePresentTouch — so gestures never fight */
     el.addEventListener('touchstart',e=>{
-      if(!window.matchMedia('(max-width:760px)').matches){showBar();return}
-      const y=e.touches[0]&&e.touches[0].clientY;
-      if(y!=null&&y>window.innerHeight-72)showBar(2600);
+      if(!touchUI())showBar();
     },{passive:true});
   }
-  showBar(window.matchMedia('(max-width:760px)').matches?2200:3000);lockWake();
+  /* on a phone the dock stays shut until the grip is tapped — nothing pops open under a finger */
+  if(touchUI())hideBarNow();else showBar(3000);
+  lockWake();
   clearInterval(presTick);
   presTick=setInterval(()=>{
     const t=$('#pres #ptm');if(!t)return;
@@ -4131,10 +4476,15 @@ function present(){
   },1000);
 }
 function pbarHtml(){
+  const one=!!window._presFocusOne;
   return '<div class="pbar"><i id="pbi"></i></div>'+
+   '<button class="pgrip" id="pgrip" type="button" aria-label="Show controls" title="Show controls"></button>'+
+   '<div class="pfoot" aria-hidden="true"><span id="pfc"></span></div>'+
+   '<div class="pres-spot" id="pspot" aria-live="polite"></div>'+
    '<div class="pb"><span class="pg" id="pg"></span><span id="ptm">0:00</span>'+
    '<button id="pv" title="Previous">‹</button><button id="nx" title="Next">›</button>'+
    '<button id="sw">'+(presMode==='ser'?'Bible':'Sermon')+'</button>'+
+   '<button id="pfo" title="Focus: one point vs context">'+(one?'One':'All')+'</button>'+
    '<button id="pm">A−</button><button id="pp">A+</button>'+
    '<button id="fs" title="Full screen (F)">Full</button><button id="px">✕</button>'+
    '<button id="pmo" class="pmo" title="More controls" aria-label="More controls">⋯</button></div>';
@@ -4143,7 +4493,7 @@ function fitPresTop(){
   const el=$('#pres');if(!el)return;
   const pb=el.querySelector('.pb');
   if(!pb)return;
-  const atBottom=window.matchMedia('(max-width:760px)').matches;
+  const atBottom=touchUI();
   if(atBottom){
     el.style.paddingTop='';
     el.style.paddingBottom=el.classList.contains('showbar')
@@ -4162,7 +4512,7 @@ function wirePbar(){
   const q=s=>el.querySelector(s);
   fitPresTop();
   setTimeout(fitPresTop,0);
-  if(!el._fit){el._fit=1;window.addEventListener('resize',fitPresTop)}
+  if(!el._fit){el._fit=1;window.addEventListener('resize',()=>{fitPresTop();fitStage()})}
   const sw=q('#sw');if(sw)sw.onclick=()=>{
     if(presMode==='ser'){
       window._presSerPi=pi;
@@ -4172,8 +4522,20 @@ function wirePbar(){
       presSer(true);
     }
   };
+  const pfo=q('#pfo');
+  if(pfo)pfo.onclick=()=>{
+    window._presFocusOne=!window._presFocusOne;
+    const el=$('#pres');
+    if(el)el.classList.toggle('focus-one',!!window._presFocusOne);
+    pfo.textContent=window._presFocusOne?'One':'All';
+    if(presMode==='ser')stepTo(pi,{instant:true});
+    requestAnimationFrame(fitStage);
+    toast(window._presFocusOne?'Focus: one point at a time':'Focus: show the full outline');
+  };
   const pm=q('#pm');if(pm)pm.onclick=()=>{psz=Math.max(16,psz-3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
   const pp=q('#pp');if(pp)pp.onclick=()=>{psz=Math.min(72,psz+3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
+  const grip=q('#pgrip');
+  if(grip)grip.onclick=e=>{e.preventDefault();showBar(5200)};
   const px=q('#px');if(px)px.onclick=exitP;
   const fs=q('#fs');
   if(fs)fs.onclick=()=>{
@@ -4235,8 +4597,14 @@ function presSer(keepPos){
      '<div id="pb2">'+blocksHTML(cur.blocks,0)+'</div></div>';
   el.style.setProperty('--ps',psz+'px');
   linkDom($('#pb2'));wirePbar();
-  const resume=(keepPos&&typeof window._presSerPi==='number')?window._presSerPi:0;
-  /* resume exact slide at the TOP of the screen — no second center-scroll */
+  let resume=(keepPos&&typeof window._presSerPi==='number')?window._presSerPi:0;
+  /* map editor block index → visible presentation point */
+  {
+    const vis=$$('#pb2 .blk:not(.hid)');
+    const byData=vis.findIndex(b=>+b.dataset.i===resume);
+    if(byData>=0)resume=byData;
+    else resume=Math.max(0,Math.min(resume,Math.max(0,vis.length-1)));
+  }
   stepTo(resume,{resume:!!keepPos,instant:true,afterLayout:true});
 
   /* toggles + word notes stay live while presenting */
@@ -4270,6 +4638,29 @@ function paintPres(){
     b.classList.toggle('near',Math.abs(n-pi)===1);
   });
   const pg=$('#pres #pg');if(pg)pg.textContent=vis.length?(pi+1)+' / '+vis.length:'';
+  const pfc=$('#pres #pfc');if(pfc)pfc.textContent=vis.length?(pi+1)+' / '+vis.length:'';
+  requestAnimationFrame(fitStage);
+}
+/* ---- stage auto-fit: shrink the point until it fits one screen ---- */
+function fitStage(){
+  const el=$('#pres');
+  if(!el||el.classList.contains('hide'))return;
+  const pc=el.querySelector('.pc');
+  if(!pc)return;
+  /* only the focus stage fits type; the stacked view keeps the user's size */
+  if(!el.classList.contains('focus-one')||!el.classList.contains('pres-ser')){
+    pc.style.removeProperty('--fit');return;
+  }
+  pc.style.setProperty('--fit','1');
+  const cs=getComputedStyle(el);
+  const avail=el.clientHeight-(parseFloat(cs.paddingTop)||0)-(parseFloat(cs.paddingBottom)||0)-6;
+  if(!(avail>120))return;
+  let f=1,n=0;
+  while(pc.scrollHeight>avail&&f>0.54&&n<14){
+    f=Math.round((f-0.06)*100)/100;
+    pc.style.setProperty('--fit',String(f));
+    n++;
+  }
 }
 function scrollPresToBlock(el,instant){
   /* pin the current block near the TOP of the presentation panel
@@ -4300,8 +4691,15 @@ function stepTo(i,opt){
     b.classList.remove('just-resumed');
   });
   const pres=$('#pres');
-  if(pres)pres.classList.toggle('focus-deep',pi>0);
-  const pg=$('#pres #pg');if(pg)pg.textContent=(pi+1)+' / '+vis.length;
+  if(pres){
+    pres.classList.toggle('focus-deep',pi>0);
+    if(typeof window._presFocusOne==='undefined')window._presFocusOne=true;
+    pres.classList.toggle('focus-one',!!window._presFocusOne&&presMode==='ser');
+  }
+  const label=(pi+1)+' / '+vis.length;
+  const pg=$('#pres #pg');if(pg)pg.textContent=label;
+  const pfc=$('#pres #pfc');if(pfc)pfc.textContent=label;
+  const spot=$('#pspot');if(spot)spot.textContent='Point '+label;
   const pbi=$('#pres #pbi');if(pbi)pbi.style.width=Math.round((pi+1)/vis.length*100)+'%';
   const el=vis[pi];
   if(el){
@@ -4312,13 +4710,11 @@ function stepTo(i,opt){
     if(opt.afterLayout)requestAnimationFrame(()=>requestAnimationFrame(go));
     else go();
   }
-  if(window.matchMedia('(max-width:760px)').matches){
-    const elp=$('#pres');
-    if(elp){elp.classList.remove('showbar');
-      const pb=elp.querySelector('.pb');
-      if(pb)pb.classList.remove('more');
-      fitPresTop()}
+  if(touchUI()){
+    /* stepping on a phone never opens the controls — the point stays fully tappable */
+    hideBarNow();
   }else showBar(1600);
+  requestAnimationFrame(fitStage);
 }
 function presBible(b,c){
   const el=$('#pres');
@@ -4353,7 +4749,8 @@ function presBible(b,c){
     presBible(nb,chaps(EN[nb])[0]||1);
   });
   wirePbar();
-  showBar(4000); /* keep controls visible while picking book/chapter */
+  /* keep the book/chapter pickers in reach, but never over a finger on a phone */
+  if(touchUI())hideBarNow();else showBar(4000);
   $('#pbt').addEventListener('click',e=>{
     const vp=e.target.closest('.vpin');
     if(vp){
@@ -4768,10 +5165,15 @@ function wordComment(){
 /* ================= cross references ================= */
 /* Source: OpenBible.info Bible cross-references, CC BY. Only links with a vote
    score of 5+ are bundled, at most eight per verse, in both directions. */
-const XR=(()=>{try{
-  const el=document.getElementById('xr');
-  return el?JSON.parse(el.textContent):{};
-}catch(e){return {}}})();
+/* 1.6 MB of links: parsed the first time a reference is needed, not on boot */
+let _XR=null;
+function XRdata(){
+  if(!_XR){
+    try{const el=document.getElementById('xr');_XR=el?JSON.parse(el.textContent):{}}
+    catch(e){_XR={}}
+  }
+  return _XR;
+}
 
 function xrefKey(x){return x.b+'|'+x.c+'|'+x.v+'|'+(x.e||0)}
 function xrState(){
@@ -4785,7 +5187,7 @@ function xrefsOf(b,c,v){
   const st=xrState();
   const gone=new Set(st.hide[key]||[]);
   const o=[];
-  const f=XR[key];
+  const f=XRdata()[key];
   if(f&&f.length){
     for(let i=0;i<f.length;i+=5){
       const x={w:f[i],b:f[i+1],c:f[i+2],v:f[i+3],e:f[i+4]};
@@ -5086,6 +5488,4 @@ window.__state=()=>S;                       /* handy for diagnostics */
 applySet();
 render();
 })();
-
-
-</script></body></html>
+</script></body></html></body></html></body></html></body></html></body></html>
