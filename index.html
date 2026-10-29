@@ -500,6 +500,99 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
 .xrow b{font-size:.86em;color:var(--ac);font-weight:700}
 .xrow span{font-size:.8em;color:var(--mu);line-height:1.45}
 .xrsrc{font-size:.68em;color:var(--mu);margin-top:4px;opacity:.85}
+/* ---------- verse dialog: sections ---------- */
+.dlg:has(.dhx) .dhead{position:sticky;top:-12px;z-index:3;background:var(--sf);
+  margin:-6px 0 8px;padding:6px 0 8px;border-bottom:1px solid var(--bd)}
+.hlrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.hlrow .sech{flex:0 0 100%;margin:0 0 2px}
+.dlg .row.wrap.dfoot{position:sticky;bottom:-12px;z-index:3;background:var(--sf);
+  border-top:1px solid var(--bd);padding:10px 0 6px;margin:14px 0 0}
+
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
+.dhx{background:none;border:none;min-height:0;min-width:0;padding:3px 8px;font-size:1rem;
+  line-height:1;color:var(--mu);border-radius:7px}
+.dhx:hover{background:var(--ac2);color:var(--tx);border-color:transparent}
+.vtext{font-size:1.02em;line-height:1.6;background:var(--ac2);padding:10px 13px;border-radius:8px;
+  border-left:3px solid var(--ac);margin:0 0 14px}
+.sech{display:block;font-size:.7em;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--mu);margin:0 0 6px}
+.hlrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.hlrow .sech{margin:0;flex:0 0 auto}
+.hlrow .hrow{margin:0;gap:6px}
+.sec{margin:0 0 14px}
+.sec .ntb{margin:0;padding:3px;width:auto;border:1px solid var(--bd);border-bottom:none;
+  border-radius:9px 9px 0 0;background:color-mix(in srgb,var(--ac2) 45%,transparent)}
+.sec .cmt{border-radius:0 0 9px 9px;min-height:96px}
+.vtedit{margin:0 0 12px;border:1px solid var(--bd);border-radius:9px;padding:0 11px}
+.vtedit summary{cursor:pointer;font-size:.8em;color:var(--mu);padding:9px 0;list-style:none;outline:none}
+.vtedit summary::-webkit-details-marker{display:none}
+.vtedit summary::before{content:"▸ ";color:var(--ac);font-weight:700}
+.vtedit[open] summary::before{content:"▾ "}
+.vtedit textarea{margin:0 0 11px;font-size:16px}
+.dfoot{align-items:center;justify-content:flex-start;gap:8px}
+.dfoot .sp{flex:1 1 auto}
+.dfoot .ok,.dfoot .x{flex:0 0 auto}
+/* ---------- small-screen pass: bible + library ---------- */
+@media(max-width:600px){
+  /* header */
+  .tab{min-height:36px;min-width:0;padding:6px 12px;font-size:14px;border-radius:8px}
+  #tgl{min-width:38px;min-height:36px;padding:4px 10px}
+  /* chapter bar */
+  body #app>.bar{gap:4px;padding:4px 2px}
+  body #app>.bar button,body #app>.bar select,body #app>.bar input{min-height:32px;padding:3px 7px;
+    font-size:13px;border-radius:7px}
+  body #app>.bar .nvg button{min-width:32px;font-size:15px}
+  body #app>.bar .grow{min-width:80px}
+  /* reading aids under the text */
+  .hint{font-size:.78em;line-height:1.5;margin:8px 2px 4px}
+  /* sermon library */
+  #ns,#im,#tr{min-height:34px;min-width:0;padding:5px 10px;font-size:13.5px}
+  .sbox input{min-height:38px;font-size:15px;padding:7px 34px 7px 10px}
+  .sbox .qclr{min-height:30px;min-width:30px}
+  .fbar select{min-height:34px;font-size:13px;padding:3px 6px}
+  .lcount{font-size:.78em;margin:6px 0 4px}
+  .row-i{padding:7px 6px;min-height:0;gap:8px}
+  .ri-ttl{font-size:.95em;line-height:1.35}
+  .ri-meta{font-size:.76em;gap:6px}
+  .more{min-height:34px;font-size:13px}
+  /* dialogs */
+  .dlg .row button{min-height:34px;padding:5px 10px;font-size:13.5px}
+  .ntb button{min-height:32px;min-width:32px;padding:3px 6px}
+  .dlg .sw,.hlbar .sw{width:31px;height:31px;min-width:31px;min-height:31px}
+  .sqi{min-height:42px;font-size:15px;padding:9px 36px 9px 12px}
+  .sbar .sqclr{min-height:32px;min-width:32px}
+  .sfilt button{min-height:34px;min-width:0;font-size:13px;padding:4px 10px}
+  .smeta,.sempty{font-size:.82em}
+  .srit{padding:8px 6px}
+  .srref b{font-size:.9em}
+  .srtxt{font-size:.9em;line-height:1.45}
+}
+/* ---------- compact editor on a phone ---------- */
+@media(max-width:600px){
+  /* fields: two to a row, short, with the series row across the width */
+  .meta{grid-template-columns:1fr 1fr;gap:6px;margin:6px 0}
+  .meta>*{min-width:0}
+  .meta input,.meta select{min-height:36px;padding:2px 8px;font-size:16px;border-radius:8px}
+  .meta .srow{grid-column:1 / -1;gap:6px}
+  .meta .srow select{flex:1 1 auto;min-width:0}
+  .meta .srow .scl{min-height:36px;height:36px;width:36px;min-width:36px}
+  #ttl{padding:6px 9px;border-radius:8px}
+  /* action row under the meta fields */
+  #ed .bar{gap:6px;margin:6px 0}
+  #ed .bar button{min-height:33px;min-width:0;padding:4px 11px;font-size:13.5px;border-radius:8px}
+  /* writing toolbar: smaller keys, fewer rows */
+  .tb{gap:3px;padding:4px 0;margin:4px -2px 8px}
+  .tb button{min-height:33px;min-width:33px;padding:3px 7px;font-size:13px;border-radius:7px}
+  .tb select{min-height:33px;font-size:12.5px;padding:3px 5px;border-radius:7px}
+  .tb .sep{margin:2px 1px}
+  .tb button.colb{padding-bottom:8px}
+  .tb button.colb::after{left:5px;right:5px;bottom:2px;height:3px}
+  /* settings strip */
+  .tools{gap:6px;padding-top:6px}
+  .tools select{min-height:35px;font-size:14px;padding:4px 8px}
+  .tools button{min-height:35px;font-size:13.5px;padding:4px 10px}
+  .tools .tgl{font-size:13.5px}
+}
 /* ---------- sticky chapter bar on the Bible screen ---------- */
 #app>.bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px));
   z-index:16;background:var(--bg);padding:7px 2px;margin:0 -2px 8px;
@@ -1357,13 +1450,13 @@ function scrollToVerse(v){const el=$('#bt .verse[data-v="'+v+'"]');
 function verseDialog(b,c,v){
   const book=EN[b],k=book+'|'+c+'|'+v,t=vtext(book,c,v)||'';
   const html=
-   '<div class="dhead"><b class="ac">'+esc(TE[b])+' '+c+':'+v+'</b></div>'+
+   '<div class="dhead"><b class="ac">'+esc(TE[b])+' '+c+':'+v+'</b>'+
+     '<button class="x dhx" title="Close" aria-label="Close">✕</button></div>'+
    '<p class="vtext">'+esc(t)+'</p>'+
-   xrefRows(b,c,v,8)+
-   '<div class="hrow"><span class="lbl2">Highlight:</span>'+
+   '<div class="hlrow"><span class="sech">Highlight</span>'+
      VCOL.map((col,i)=>i?'<button class="sw" data-h="'+i+'" style="background:'+col+'" title="Highlight"></button>':'').join('')+
      '<button class="sw none" data-h="0" title="Remove">✕</button></div>'+
-   '<label class="lbl">Commentary</label>'+
+   '<div class="sec"><div class="sech">Commentary</div>'+
    '<div class="ntb">'+
      '<button data-c="bold" title="Bold (Ctrl+B)"><b>B</b></button>'+
      '<button data-c="italic" title="Italic (Ctrl+I)"><i>I</i></button>'+
@@ -1379,15 +1472,16 @@ function verseDialog(b,c,v){
      '<span class="sep"></span>'+
      '<button data-c="removeFormat" title="Clear formatting">Aa</button>'+
    '</div>'+
-   '<div class="cmt" contenteditable="true" data-ph="Write a commentary…">'+cleanHTML(S.notes[k]||'')+'</div>'+
-   '<label class="lbl">Edit the verse text (this device only)</label>'+
-   '<textarea class="ed2" rows="3">'+esc(t)+'</textarea>'+
-   '<div class="row wrap"><button class="ls2">\u25B6 Listen</button>'+
+   '<div class="cmt" contenteditable="true" data-ph="Write a commentary…">'+cleanHTML(S.notes[k]||'')+'</div></div>'+
+   xrefRows(b,c,v,8)+
+   '<details class="vtedit"><summary>Edit the verse text <span class="muted">(this device only)</span></summary>'+
+   '<textarea class="ed2" rows="3">'+esc(t)+'</textarea></details>'+
+   '<div class="row wrap dfoot"><button class="ls2">\u25B6 Listen</button>'+
      '<button class="cp">Copy</button>'+
      '<button class="ins">+ Add to sermon</button>'+
      '<button class="x">Close</button><button class="pri ok">Save</button></div>';
   modal(html,(d,close)=>{
-    d.querySelector('.x').onclick=close;
+    d.querySelectorAll('.x').forEach(btn=>btn.onclick=close);
     d.querySelectorAll('.sw').forEach(sw=>sw.onclick=()=>{
       const h=+sw.dataset.h;if(h)S.vh[k]=h;else delete S.vh[k];save();
       d.querySelectorAll('.sw').forEach(x=>x.classList.toggle('sel',+x.dataset.h===h));
