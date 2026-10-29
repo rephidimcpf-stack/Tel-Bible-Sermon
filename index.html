@@ -15,20 +15,25 @@
 <meta name="apple-mobile-web-app-title" content="Bible">
 <meta name="application-name" content="Bible">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;700&family=Noto+Serif+Telugu:wght@400;700&family=Hind+Guntur:wght@400;700&family=Mandali&family=Ramabhadra&family=Gidugu&family=Suranna&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Hind+Guntur:wght@400;500;600;700&family=Mallanna&family=Tenali+Ramakrishna&family=Gurajada&family=Chathura:wght@400;700&family=Suranna&display=swap" rel="stylesheet">
 <style>
 /* ---------- themes: each sets the same variables so every surface stays legible ---------- */
-:root{--bg:#fbfaf7;--sf:#ffffff;--tx:#1c1f23;--mu:#5c646e;--bd:#e2ded5;--ac:#a8501c;--ac2:#fbeadb;--hl:#fff3a3;--xr:#2a5a9e;--xr-bg:color-mix(in srgb,#2a5a9e 9%,#fff);--f:'Noto Sans Telugu';color-scheme:light}
-:root[data-theme=sepia]{--bg:#f5ecd8;--sf:#fbf5e7;--tx:#2f2a22;--mu:#6a5c47;--bd:#ddd0b4;--ac:#8a4b14;--ac2:#ecdcb8;--hl:#f2dc78;--xr:#7a4510;--xr-bg:color-mix(in srgb,#7a4510 11%,#fbf5e7);color-scheme:light}
-:root[data-theme=forest]{--bg:#f3f7f2;--sf:#ffffff;--tx:#1b241e;--mu:#55645a;--bd:#d7e2d5;--ac:#2f6b3a;--ac2:#e3efe3;--hl:#dff0b8;--xr:#1f5c38;--xr-bg:color-mix(in srgb,#1f5c38 10%,#fff);color-scheme:light}
-:root[data-theme=dark]{--bg:#14171a;--sf:#1c2126;--tx:#e8eef4;--mu:#a6b2bf;--bd:#2c343b;--ac:#f2a76d;--ac2:#2b2119;--hl:#5a4d10;--xr:#9eb6ff;--xr-bg:color-mix(in srgb,#9eb6ff 14%,#1c2126);color-scheme:dark}
-:root[data-theme=midnight]{--bg:#0f1720;--sf:#16212c;--tx:#e6eef6;--mu:#9db0c2;--bd:#243444;--ac:#6fb3f2;--ac2:#16283a;--hl:#2c4a6b;--xr:#8ec8ff;--xr-bg:color-mix(in srgb,#6fb3f2 14%,#16212c);color-scheme:dark}
+:root{--bg:#f7f5f0;--sf:#fffcf7;--tx:#1a1c1e;--mu:#5e646c;--bd:#e4e0d6;--ac:#8b4513;--ac2:#f3e8dc;--hl:#ffe08a;--xr:#2c5f9e;--xr-bg:color-mix(in srgb,#2c5f9e 9%,#fff);--f:'Noto Serif Telugu';--on-ac:#fff;color-scheme:light}
+:root[data-theme=light]{--bg:#f7f5f0;--sf:#fffcf7;--tx:#1a1c1e;--mu:#5e646c;--bd:#e4e0d6;--ac:#8b4513;--ac2:#f3e8dc;--hl:#ffe08a;--xr:#2c5f9e;--xr-bg:color-mix(in srgb,#2c5f9e 9%,var(--sf));--on-ac:#fff;color-scheme:light}
+:root[data-theme=sepia]{--bg:#f0e6d2;--sf:#faf4e6;--tx:#2a2418;--mu:#6b5d48;--bd:#d9ccb0;--ac:#7a4a12;--ac2:#ecdfc4;--hl:#f0d878;--xr:#6b3d0e;--xr-bg:color-mix(in srgb,#6b3d0e 11%,var(--sf));--on-ac:#fff;color-scheme:light}
+:root[data-theme=study]{--bg:#eef1f5;--sf:#ffffff;--tx:#1c2430;--mu:#5a6575;--bd:#d5dbe4;--ac:#2f5d9a;--ac2:#e3ebf6;--hl:#d4e5ff;--xr:#1e4f8c;--xr-bg:color-mix(in srgb,#1e4f8c 10%,var(--sf));--on-ac:#fff;color-scheme:light}
+:root[data-theme=forest]{--bg:#eef1f5;--sf:#ffffff;--tx:#1c2430;--mu:#5a6575;--bd:#d5dbe4;--ac:#2f5d9a;--ac2:#e3ebf6;--hl:#d4e5ff;--xr:#1e4f8c;--xr-bg:color-mix(in srgb,#1e4f8c 10%,var(--sf));--on-ac:#fff;color-scheme:light}
+:root[data-theme=sanctuary]{--bg:#f6f0ea;--sf:#fffaf6;--tx:#2a1814;--mu:#6e5348;--bd:#e5d5c8;--ac:#7b2d26;--ac2:#f0ddd6;--hl:#f5d9a8;--xr:#5c2a24;--xr-bg:color-mix(in srgb,#7b2d26 10%,var(--sf));--on-ac:#fff;color-scheme:light}
+:root[data-theme=dark]{--bg:#12151a;--sf:#1a1f27;--tx:#e8ecf2;--mu:#9aa3b2;--bd:#2a313c;--ac:#d4a574;--ac2:#2a231c;--hl:#5c4a18;--xr:#9eb6ff;--xr-bg:color-mix(in srgb,#9eb6ff 14%,var(--sf));--on-ac:#1a1f27;color-scheme:dark}
+:root[data-theme=midnight]{--bg:#0a1018;--sf:#111a26;--tx:#e4eef8;--mu:#8fa3b8;--bd:#1e2c3d;--ac:#6ba3d9;--ac2:#132233;--hl:#2a4560;--xr:#8ec8ff;--xr-bg:color-mix(in srgb,#6ba3d9 14%,var(--sf));--on-ac:#0a1018;color-scheme:dark}
 :root[data-theme=contrast]{--bg:#ffffff;--sf:#ffffff;--tx:#000000;--mu:#2b2b2b;--bd:#000000;--ac:#0b3fd1;--ac2:#e6ecff;--hl:#ffe94a;--xr:#0b3fd1;--xr-bg:#e6ecff;color-scheme:light}
 :root[data-theme=contrast] .card,:root[data-theme=contrast] button,:root[data-theme=contrast] select,:root[data-theme=contrast] input{border-width:2px}
 *,*:before,*:after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;
   scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + 76px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 var(--f),system-ui,-apple-system,sans-serif;
+body{margin:0;background:var(--bg);color:var(--tx);
+  font:17px/1.7 var(--f),'Noto Serif Telugu','Noto Sans Telugu',system-ui,-apple-system,sans-serif;
+  text-rendering:optimizeLegibility;
  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);-webkit-tap-highlight-color:transparent}
 body.pres-on{overflow:hidden}
 button,select,input,textarea{font:inherit;color:inherit;background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:6px 10px;max-width:100%}
@@ -129,34 +134,57 @@ main{max-width:1100px;margin:0 auto;padding:10px;overflow:visible}
   .bbnav .acts{justify-content:flex-start;flex-wrap:wrap}
 }
 
-/* Phones */
+/* Phones — compact controls */
 @media(max-width:600px){
   .bbnav{
-    padding:10px;gap:8px;margin-bottom:10px;
-    border-radius:12px}
-  .bbnav .row1{grid-template-columns:1fr;gap:8px}
-  .bbnav .loc{display:grid;grid-template-columns:auto 1fr auto auto;gap:6px;align-items:center}
+    padding:8px;gap:6px;margin-bottom:8px;
+    border-radius:10px}
+  .bbnav .row1{grid-template-columns:1fr;gap:6px}
+  .bbnav .loc{display:grid;grid-template-columns:auto 1fr;gap:5px;align-items:center}
   .bbnav .loc .tseg{grid-column:1;grid-row:1}
-  .bbnav #sb{grid-column:2 / -1;grid-row:1;max-width:none;min-width:0;width:100%}
+  .bbnav #sb{grid-column:2;grid-row:1;max-width:none;min-width:0;width:100%;
+    min-height:32px;font-size:13px;padding:4px 8px}
   .bbnav .nvg{grid-column:1;grid-row:2}
-  .bbnav #jmp{grid-column:2 / -1;grid-row:2;max-width:none;min-width:0;width:100%}
+  .bbnav .nvg button{min-width:32px;min-height:32px;font-size:1.05em;padding:2px 6px}
+  .bbnav #jmp{grid-column:2;grid-row:2;max-width:none;min-width:0;width:100%;
+    min-height:32px;font-size:13px;padding:4px 8px}
   .bbnav .acts{
-    display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin:0}
-  .bbnav .acts button{width:100%;min-height:38px;justify-content:center}
-  .bbnav .ch{min-width:42px;height:40px;font-size:14px;border-radius:10px}
-  .bbnav .chstrip{padding-top:8px}
-  .hlbar{grid-template-columns:1fr;gap:8px;padding:10px}
-  .hlbar .sws{justify-content:flex-start}
-  .hlbar .hloff,.hlbar .hlclear{min-height:36px}
+    display:flex;flex-wrap:wrap;gap:4px;width:100%;margin:0}
+  .bbnav .acts button{flex:1 1 auto;min-width:calc(50% - 4px);width:auto;
+    min-height:32px;padding:4px 8px;font-size:12.5px;justify-content:center}
+  .bbnav .ch{min-width:32px;height:30px;padding:0 8px;font-size:12.5px;border-radius:8px}
+  .bbnav .chstrip{padding-top:6px;gap:3px}
+  .hlbar{grid-template-columns:1fr;gap:6px;padding:8px}
+  .hlbar .sws{justify-content:flex-start;gap:4px}
+  .hlbar .sw{width:26px;height:26px}
+  .hlbar .hloff,.hlbar .hlclear{min-height:30px;padding:4px 8px;font-size:.8em}
+  .hlbar .hlhint{font-size:.8em}
 }
 .verse{padding:3px 6px;border-radius:7px;scroll-margin-top:80px;
  transition:background-color .28s ease}
 .verse:hover{background:var(--ac2)}
 .verse.flash{outline:2px solid var(--ac);background:var(--ac2)}
 .verse.serm{box-shadow:inset 3px 0 0 var(--ac)}
-.vpin{display:flex;align-items:center;gap:6px;background:var(--ac2);border:1px solid var(--bd);border-left:4px solid var(--ac);
- border-radius:7px;padding:3px 7px;margin:4px 0 3px;font-size:.82em;cursor:pointer;line-height:1.4}
-.vpin:hover{border-color:var(--ac)}
+.vpins{display:flex;flex-direction:column;gap:5px;margin:6px 0 8px}
+.vpin{
+  display:flex;align-items:center;gap:8px;
+  background:var(--sf);
+  border:1px solid color-mix(in srgb,var(--bd) 85%,var(--ac));
+  border-left:3px solid var(--pin,var(--ac));
+  border-radius:12px;
+  padding:8px 10px 8px 8px;
+  margin:0;
+  font-size:.84em;cursor:pointer;line-height:1.35;
+  box-shadow:0 1px 2px color-mix(in srgb,var(--tx) 5%,transparent),
+             0 4px 12px -6px color-mix(in srgb,var(--tx) 10%,transparent);
+  transition:border-color .15s,box-shadow .15s,background .15s,transform .12s}
+.vpin:hover{
+  border-color:color-mix(in srgb,var(--pin,var(--ac)) 45%,var(--bd));
+  background:color-mix(in srgb,var(--pin,var(--ac)) 7%,var(--sf));
+  box-shadow:0 2px 6px color-mix(in srgb,var(--tx) 8%,transparent),
+             0 8px 18px -8px color-mix(in srgb,var(--pin,var(--ac)) 28%,transparent);
+  transform:translateY(-1px)}
+.vpin:active{transform:translateY(0)}
 .vpin small{color:var(--mu)}
 .vnote{display:inline-block;font-size:.58em;background:var(--ac2);color:var(--ac);
  border:1px solid color-mix(in srgb,var(--ac) 38%,transparent);border-radius:999px;
@@ -168,25 +196,65 @@ main{max-width:1100px;margin:0 auto;padding:10px;overflow:visible}
 .hlrow .sw.sel{outline:2px solid var(--ac);outline-offset:3px}
 .hlrow .sw:hover{transform:scale(1.08)}
 .wpop .vc{white-space:pre-wrap}
-.vpin b{font-weight:600}
-.vpin .vpgo{color:var(--ac);font-size:.9em;flex:0 0 auto}
-.vpin .vpser{display:inline-flex;align-items:center;gap:2px;font-weight:700;color:var(--ac);flex:0 0 auto}
-.vpin .vpdash{color:var(--mu);margin:0 1px;flex:0 0 auto}
-.vpin .vpttl{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.vpin .vpref{color:var(--mu);flex:0 0 auto;margin-left:auto;padding-left:8px}
-.vpin.grp{cursor:pointer}
+.vpin .vpico{
+  flex:0 0 auto;width:28px;height:28px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--pin,var(--ac)) 14%,var(--sf));
+  color:var(--pin,var(--ac));font-size:.95em;line-height:1}
+.vpin .vpbody{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.vpin .vptop{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.vpin .vpser{
+  display:inline-flex;align-items:center;max-width:100%;
+  font-size:.72em;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--pin,var(--ac));
+  background:color-mix(in srgb,var(--pin,var(--ac)) 12%,var(--sf));
+  border:1px solid color-mix(in srgb,var(--pin,var(--ac)) 22%,transparent);
+  padding:1px 7px;border-radius:999px;line-height:1.45;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vpin .vpk{font-size:.68em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mu);opacity:.85}
+.vpin .vpttl{
+  font-weight:600;font-size:1.02em;color:var(--tx);
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  letter-spacing:-.01em}
+.vpin .vpref{
+  font-size:.78em;color:var(--mu);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vpin .vpgo{
+  flex:0 0 auto;width:26px;height:26px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--pin,var(--ac));font-size:.85em;
+  background:color-mix(in srgb,var(--pin,var(--ac)) 10%,transparent);
+  transition:background .15s,color .15s}
+.vpin:hover .vpgo{background:var(--pin,var(--ac));color:var(--on-ac,#fff)}
+.vpin.grp .vpttl{font-weight:700}
+.vpin.grp .vpk{color:var(--pin,var(--ac));opacity:1}
+.vpinsub{
+  display:flex;flex-direction:column;gap:4px;
+  margin:2px 0 2px 12px;padding:4px 0 2px 10px;
+  border-left:2px solid color-mix(in srgb,var(--pin,var(--ac)) 35%,var(--bd))}
 .vpinsub.hid{display:none}
-.vpinsub .vpin{margin-left:14px;font-size:.96em}
+.vpinsub .vpin{
+  margin:0;font-size:.96em;
+  box-shadow:none;border-radius:10px;padding:7px 9px}
+.verse.serm{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--ac) 70%,transparent);
+  background:color-mix(in srgb,var(--ac2) 22%,transparent)}
 .toast{display:flex;align-items:center;gap:10px}
 .toast .tact{background:transparent;border:1px solid var(--ac);color:var(--ac);padding:2px 10px;border-radius:6px;font-weight:600}
-@media(max-width:520px){.vpin .vpttl{white-space:normal}}
-.vn{color:var(--ac);font-weight:700;cursor:pointer;margin-right:6px;font-size:.75em;vertical-align:super;user-select:none}
+@media(max-width:520px){
+  .vpin{padding:9px 10px;gap:8px}
+  .vpin .vpttl{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .vpin .vpico{width:30px;height:30px;border-radius:9px}
+  .vpinsub{margin-left:6px;padding-left:8px}
+}
+.vn{color:var(--ac);font-weight:700;cursor:pointer;margin-right:6px;font-size:.75em;vertical-align:super;user-select:none;
+  position:relative;z-index:2;pointer-events:auto;-webkit-tap-highlight-color:transparent}
 .vn:hover{text-decoration:underline}
 .w{cursor:text}
 .w.has{background:color-mix(in srgb,var(--ac2) 90%,transparent);border-bottom:2px dotted var(--ac);
  border-radius:3px;cursor:pointer}
 .w.has:hover{background:var(--ac2)}
-.wpop{position:fixed;z-index:80;display:flex;flex-direction:column;max-height:min(72vh,540px);background:var(--sf);border:1px solid var(--bd);border-radius:10px;
+.wpop{position:fixed;z-index:95;display:flex;flex-direction:column;max-height:min(72vh,540px);background:var(--sf);border:1px solid var(--bd);border-radius:10px;
  box-shadow:0 8px 28px rgba(0,0,0,.22);padding:10px 12px;font-size:.9em;line-height:1.55;max-height:60vh;overflow:auto}
 .wph{color:var(--ac);font-weight:700;margin-bottom:4px;font-size:1.02em}
 .wpb{word-break:break-word;overflow:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-height:0;overscroll-behavior:contain}
@@ -275,28 +343,81 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px;margin:8px 0}
 .meta input,.meta select{width:100%}
 #ttl{font-size:1.2em;font-weight:700;width:100%}
-.tb{display:flex;gap:3px;flex-wrap:wrap;margin:5px 0;position:sticky;
-  top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px));
-  background:color-mix(in srgb,var(--sf) 94%,transparent);
-  -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);
-  padding:7px 6px;z-index:18;border-radius:10px;border:1px solid var(--bd);
-  box-shadow:0 4px 14px color-mix(in srgb,var(--tx) 8%,transparent);
-  /* stay reachable while the sermon body grows and scrolls */
-  max-height:min(42vh,320px);overflow:auto;overscroll-behavior:contain}
-.tb button{padding:4px 9px;min-width:32px}
-.tb .sep{width:1px;background:var(--bd);margin:2px 3px;align-self:stretch}
-.tb select{padding:4px 6px}
+.tb{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 10px;
+  margin:8px 0 10px;padding:8px 10px;
+  position:sticky;z-index:18;
+  top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + var(--edbar,40px));
+  background:color-mix(in srgb,var(--sf) 96%,transparent);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+  border:1px solid var(--bd);border-radius:12px;
+  box-shadow:0 2px 8px color-mix(in srgb,var(--tx) 6%,transparent);
+  max-height:min(46vh,360px);overflow:auto;overscroll-behavior:contain}
+.tb .tbg{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tb .tbgl{
+  font-size:.65em;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--mu);padding:0 2px;line-height:1;user-select:none}
+.tb .tbb{
+  display:flex;flex-wrap:wrap;align-items:center;gap:2px;
+  background:var(--bg);border:1px solid color-mix(in srgb,var(--bd) 85%,transparent);
+  border-radius:10px;padding:3px}
+.tb .tbb button,.tb .tbb select{
+  margin:0;border:1px solid transparent;background:transparent;
+  border-radius:7px;box-shadow:none;min-height:32px;min-width:32px;
+  padding:4px 8px;color:var(--tx)}
+.tb .tbb button:hover,.tb .tbb select:hover{
+  background:var(--ac2);border-color:transparent}
+.tb .tbb button:active{transform:translateY(1px)}
+.tb .tbb select{
+  min-width:7.5em;max-width:11em;font-weight:600;padding:4px 22px 4px 8px}
+.tb .tbb .tbdng{color:#c0392b}
+.tb .tbb .tbdng:hover{background:color-mix(in srgb,#c0392b 10%,var(--sf))}
+.tb .sep{display:none}
 .tb .hl span{background:var(--c,#ffe27a);padding:0 4px;border-radius:3px;color:#1f2328}
-/* Action bar (Save / Present / …) sticks just above the format tools on tall sermons */
-#ed .bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px));
-  z-index:19;background:var(--sf);padding:6px 2px;margin:4px 0 0;
+#ed .bar{
+  position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px));
+  z-index:19;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  background:color-mix(in srgb,var(--sf) 96%,transparent);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+  padding:8px 10px;margin:6px 0 0;
+  border:1px solid var(--bd);border-radius:12px 12px 0 0;
   border-bottom:1px solid color-mix(in srgb,var(--bd) 80%,transparent)}
-/* When both stick, push the format tools under the action bar height */
-#ed .tb{top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + var(--edbar,40px))}
-#bl .blk{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + var(--edbar,40px) + 56px)}
-.blk{display:flex;gap:5px;align-items:flex-start;padding:1px 0;padding-left:calc(var(--lvl,0) * 24px)}
+#ed .tb{border-radius:0 0 12px 12px;margin-top:0;border-top:none}
+#ed .bar + .tb{/* seamless under action bar */}
+#bl .blk{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + var(--edbar,40px) + 72px)}
+.tb button.on,.tb button[aria-pressed=true]{background:var(--ac2);color:var(--ac)}
+.blk{display:flex;gap:6px;align-items:flex-start;padding:2px 0;padding-left:calc(var(--lvl,0) * 24px)}
 .blk.hid{display:none}
-.mk{min-width:22px;min-height:1.6em;color:var(--mu);text-align:right;user-select:none}
+.mk{min-width:22px;min-height:1.6em;color:var(--mu);text-align:right;user-select:none;
+  opacity:0;transition:opacity .15s;cursor:grab}
+.blk:hover .mk,.blk:focus-within .mk{opacity:.7}
+#bl{min-height:min(55vh,560px);padding:12px 10px 48px}
+#bl .bt{
+  min-height:1.6em;line-height:1.75;font-size:1.02em;
+  caret-color:var(--ac);outline:none;
+  border:none;background:transparent;box-shadow:none;padding:4px 6px}
+#bl .bt:focus{background:color-mix(in srgb,var(--ac2) 28%,transparent);border-radius:8px}
+#bl .bl-pad{
+  margin:10px 0 0 28px;padding:12px 14px;border-radius:10px;
+  color:var(--mu);font-size:.9em;font-weight:600;cursor:pointer;
+  border:1px dashed color-mix(in srgb,var(--bd) 80%,var(--ac));
+  background:color-mix(in srgb,var(--bg) 60%,transparent);
+  transition:border-color .15s,background .15s,color .15s,transform .1s;
+  user-select:none;-webkit-user-select:none;pointer-events:auto;position:relative;z-index:2}
+#bl .bl-pad:hover{
+  color:var(--ac);border-color:var(--ac);
+  background:color-mix(in srgb,var(--ac2) 45%,transparent)}
+#bl .bl-pad:active{transform:translateY(1px)}
+#bl .blk.multi-sel .bt{
+  background:color-mix(in srgb,var(--ac) 18%,var(--sf))!important;
+  border-radius:6px;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ac) 30%,transparent)}
+#bl .bt{user-select:text;-webkit-user-select:text}
+#bl .bl-pad:focus{outline:2px solid var(--ac);outline-offset:2px}
+@media(max-width:600px){
+  .mk{opacity:.35}
+  #bl .bl-pad{margin-left:8px;padding:12px 8px}
+}
 .bt{flex:1;outline:none;min-height:1.55em;padding:4px 8px;border-radius:6px;word-break:break-word;
  color:var(--tx);caret-color:var(--ac);white-space:pre-wrap;overflow-wrap:anywhere}
 .bt:focus{background:color-mix(in srgb,var(--ac2) 40%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ac) 35%,transparent)}
@@ -342,9 +463,26 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 .blk[data-t=todo].done .mk:before{content:"☑"}
 .blk.done .bt{text-decoration:line-through;opacity:.6}
 .blk.cur{outline:2px dashed var(--ac);border-radius:6px}
-#pres .pc .blk{opacity:.22;filter:saturate(.7);transition:opacity .28s ease,filter .28s ease,transform .28s ease}
-#pres .pc .blk.cur{opacity:1;filter:none;outline:none;background:transparent;transform:none}
-#pres .pc .blk.near{opacity:.42;filter:saturate(.85)}
+#pres .pc .blk{
+  opacity:1;filter:none;
+  transition:color .28s ease,background .28s ease,transform .28s ease}
+/* dim plain text by colour — not opacity — so word notes stay fully visible */
+#pres .pc .blk:not(.cur) .bt{
+  color:color-mix(in srgb,var(--tx) 28%,var(--bg))}
+#pres .pc .blk.near .bt{
+  color:color-mix(in srgb,var(--tx) 48%,var(--bg))}
+#pres .pc .blk.cur{outline:none;background:transparent;transform:none}
+#pres .pc .blk.cur .bt{color:var(--tx)}
+#pres .pc .blk.cur{
+  position:relative;
+  box-shadow:inset 4px 0 0 var(--ac);
+  padding-left:8px;margin-left:-8px}
+#pres .pc .blk.just-resumed{
+  animation:presResume .9s ease}
+@keyframes presResume{
+  0%{background:color-mix(in srgb,var(--ac) 28%,transparent)}
+  100%{background:transparent}}
+#pres #pg{font-weight:700;letter-spacing:.02em}
 #pres .pc{overflow-wrap:break-word}
 #pres .pbar{position:fixed;left:0;right:0;top:0;height:2px;z-index:43;background:transparent;pointer-events:none;opacity:.45}
 #pres .pbar i{display:block;height:100%;width:0;background:var(--ac);transition:width .25s ease}
@@ -369,6 +507,24 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 .ntb button:active{transform:translateY(1px)}
 .ntb .sep{width:1px;height:18px;background:var(--bd);margin:0 3px}
 .ntb .hl span{background:var(--c,#ffe27a);padding:0 4px;border-radius:3px;color:#1f2328;font-weight:700}
+.ntb-pro{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;width:auto;max-width:100%;
+  padding:8px;background:var(--sf);border:1px solid var(--bd);border-radius:12px 12px 0 0}
+.ntb-pro .ntg{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ntb-pro .ntgl{font-size:.62em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);padding:0 2px}
+.ntb-pro .ntbb{display:flex;flex-wrap:wrap;align-items:center;gap:2px;background:var(--bg);
+  border:1px solid color-mix(in srgb,var(--bd) 80%,transparent);border-radius:9px;padding:3px}
+.ntb-pro .ntbb button{min-height:30px}
+.ntb-pro .nt-sw .sw{width:24px;height:24px;min-width:24px;border-radius:50%;padding:0;border:2px solid var(--bd)}
+.ntb-pro .nt-sw .sw.sel{outline:2px solid var(--ac);outline-offset:2px}
+.ntb-pro .colb{font-weight:700;position:relative;padding-bottom:8px}
+.ntb-pro .colb::after{content:"";position:absolute;left:6px;right:6px;bottom:2px;height:3px;border-radius:2px;background:currentColor;opacity:.5}
+.ntb-pro .colb.hl::after{background:#ffd54f;opacity:1}
+.ntb-pro + .cmt{border-top-left-radius:0;border-top-right-radius:0}
+@media(max-width:520px){
+  .ntb-pro{gap:6px;padding:6px}
+  .ntb-pro .ntg[data-g],.ntb-pro .ntg{flex:1 1 auto}
+  .ntb-pro .ntg-verse{flex:1 1 100%}
+}
 .dlg .cmt{min-height:110px;max-height:42vh;overflow:auto;border:1px solid var(--bd);border-radius:10px;
  padding:10px 12px;background:var(--sf);white-space:pre-wrap;outline:none;font-size:.96em;line-height:1.6;
  transition:border-color .15s,box-shadow .15s}
@@ -504,8 +660,8 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 .tseg button.on{background:var(--ac);color:#fff}
 .tseg button:not(.on):hover{background:var(--ac2);color:var(--tx)}
 @media(max-width:600px){
-  .tseg button{padding:8px 14px;font-size:14px;min-height:40px}
-  #sb,#pbk{flex:1 1 140px;min-width:0}
+  .tseg button{padding:4px 10px;font-size:12.5px;min-height:30px}
+  #sb,#pbk{flex:1 1 120px;min-width:0}
 }
 
 
@@ -536,9 +692,9 @@ body.hl-on #hlb{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent
 .sfoot{margin-top:10px}
 @media(max-width:600px){
   .sfilt{width:100%}
-  .sfilt button{flex:1;padding:10px 8px;font-size:13.5px;min-height:40px}
+  .sfilt button{flex:1;padding:6px 6px;font-size:12.5px;min-height:32px}
   .sres{max-height:min(52dvh,480px)}
-  .srit{padding:12px 8px}
+  .srit{padding:10px 8px}
 }
 
 /* ========== Enhanced mobile compatibility ========== */
@@ -599,20 +755,50 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
   #pres{padding-top:calc(env(safe-area-inset-top,0px) + 42px)}
   #pres .pb{padding-top:calc(env(safe-area-inset-top,0px) + 4px);padding-bottom:4px}
 }
-/* Sticky writing tools: stay on screen while the sermon text grows */
+/* Sticky writing tools — mobile: dense single strip, not stacked empty rows */
 @media(max-width:600px){
-  #ed .bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px));z-index:19;
-    background:color-mix(in srgb,var(--sf) 96%,transparent);
-    -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);
-    padding:6px 4px;margin:0 -4px;border-bottom:1px solid var(--bd)}
-  .tb{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px) + var(--edbar,36px));z-index:18;
-      background:color-mix(in srgb,var(--sf) 96%,transparent);
-      border:1px solid var(--bd);border-radius:0 0 10px 10px;padding:6px 4px;margin:0 -4px 8px;
-      -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);
-      max-height:min(38vh,280px);overflow:auto}
-  .meta{/* keep meta scrolling away so more room for writing + tools */
-        position:static;background:transparent;padding-bottom:0}
-  #bl .blk{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px) + var(--edbar,36px) + 64px)}
+  #ed .card{padding:8px}
+  #ed #ttl{font-size:1.05em;padding:8px 10px;margin-bottom:6px}
+  #ed .meta{
+    position:static;display:grid;
+    grid-template-columns:1fr 1fr;gap:5px;margin-bottom:6px}
+  #ed .meta select,#ed .meta input{min-height:30px;font-size:12.5px;padding:3px 7px;width:100%}
+  #ed .meta .srow{grid-column:1/-1;display:flex;gap:5px}
+  #ed .meta .srow select{flex:1}
+  #ed .hint{font-size:.72em;margin:4px 0 6px;line-height:1.35}
+  #ed .bar{
+    position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px));z-index:19;
+    padding:5px 6px;margin:0;border-radius:10px 10px 0 0;
+    gap:4px}
+  #ed .bar button{min-height:28px;padding:3px 8px;font-size:12px}
+  #ed .bar .svst,#ed .bar #wc{font-size:.72em}
+  .tb{
+    position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px) + var(--edbar,32px));z-index:18;
+    display:flex;flex-wrap:wrap;align-items:center;
+    gap:3px;padding:5px 6px;margin:0 0 8px;border-radius:0 0 10px 10px;
+    max-height:none;overflow:visible}
+  /* hide group labels on phone — buttons speak for themselves */
+  .tb .tbgl{display:none}
+  .tb .tbg{flex:0 0 auto;display:contents}
+  .tb .tbb{
+    display:contents;background:transparent;border:none;padding:0}
+  .tb .tbb button,.tb .tbb select{
+    min-height:28px;min-width:28px;padding:3px 6px;font-size:12.5px;
+    background:var(--bg);border:1px solid var(--bd);border-radius:7px;margin:0}
+  .tb .tbb select{min-width:4.8em;flex:0 0 auto;font-size:12px}
+  /* thin divider between logical groups via margin on first of group */
+  .tb .tbg[data-g=list] .tbb button:first-child,
+  .tb .tbg[data-g=block] .tbb select,
+  .tb .tbg[data-g=insert] .tbb button:first-child,
+  .tb .tbg[data-g=history] .tbb button:first-child{margin-left:3px}
+  .meta{padding-bottom:0}
+  #bl{min-height:40vh;padding:8px 4px 24px}
+  #bl .bl-pad{margin-left:4px;padding:10px 8px;font-size:.82em}
+  #bl .blk{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr,48px) + var(--edbar,32px) + 56px)}
+}
+@media(min-width:601px){
+  .tb .tbg[data-g=format] .tbb button{min-width:34px}
+  .tb .tbg[data-g=history]{margin-left:auto}
 }
 /* Ensure no horizontal scroll from long Telugu text */
 .verse,.bt,.ri-ttl,.vpin{overflow-wrap:anywhere;word-break:break-word}
@@ -722,13 +908,9 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
   /* action row under the meta fields */
   #ed .bar{gap:6px;margin:6px 0}
   #ed .bar button{min-height:33px;min-width:0;padding:4px 11px;font-size:13.5px;border-radius:8px}
-  /* writing toolbar: smaller keys, fewer rows */
-  .tb{gap:3px;padding:4px 0;margin:4px -2px 8px}
-  .tb button{min-height:33px;min-width:33px;padding:3px 7px;font-size:13px;border-radius:7px}
-  .tb select{min-height:33px;font-size:12.5px;padding:3px 5px;border-radius:7px}
-  .tb .sep{margin:2px 1px}
-  .tb button.colb{padding-bottom:8px}
-  .tb button.colb::after{left:5px;right:5px;bottom:2px;height:3px}
+  /* writing toolbar density on narrow phones */
+  .tb .tbb button{min-height:32px;min-width:32px;font-size:13px}
+  .tb .tbb select{min-height:32px;font-size:12.5px}
   /* settings strip */
   .tools{gap:6px;padding-top:6px}
   .tools select{min-height:35px;font-size:14px;padding:4px 8px}
@@ -780,6 +962,32 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
 /* ---------- word comments in the editor ---------- */
 .bt .wc{background:color-mix(in srgb,var(--ac) 15%,transparent);
   border-bottom:2px dotted var(--ac);border-radius:3px;cursor:pointer}
+#pres .wc,#pres .w.has{
+  cursor:pointer;pointer-events:auto;
+  color:var(--tx)!important;
+  background:color-mix(in srgb,var(--ac) 32%,var(--sf))!important;
+  border-bottom:3px solid var(--ac)!important;
+  border-radius:5px;
+  padding:0 .12em;
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--ac) 35%,transparent);
+  -webkit-tap-highlight-color:transparent}
+#pres .wc:active,#pres .w.has:active{
+  background:var(--ac)!important;color:var(--on-ac,#fff)!important}
+#pres .wc::after,#pres .w.has::after{
+  content:"📝";font-size:.55em;margin-left:.15em;vertical-align:super;opacity:.9}
+#pres .wpop{z-index:95;pointer-events:auto}
+.wpop-pres{
+  z-index:120!important;
+  font-size:clamp(16px,2.8vw,22px)!important;
+  padding:14px 16px!important;
+  border:2px solid var(--ac)!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.35)!important;
+  max-height:min(70vh,560px)!important}
+.wpop-pres .wph{font-size:1.15em;font-weight:700;margin-bottom:8px}
+.wpop-pres .wpr{margin-top:12px;gap:8px}
+.wpop-pres .wpr button{min-height:40px;padding:8px 14px;font-size:1em}
+#pres{-webkit-user-select:none;user-select:none}
+#pres .wc,#pres .w.has{-webkit-user-select:none;user-select:none}
 .wcp .wpb{padding:0}
 .wcp textarea{width:100%;min-height:70px;resize:vertical;font:inherit;padding:7px 9px;
   border-radius:8px;border:1px solid var(--bd);background:var(--sf);color:var(--tx)}
@@ -824,6 +1032,26 @@ button,select,input,.tab,.vpin,.row-i,.bmrow,.vn,.mk,.hlbar .sw{
   #pres .pb #ptm{font-size:.8em;color:var(--mu);font-variant-numeric:tabular-nums;opacity:.8}
   #pres .pc>.bar{display:none}
   #pres.showbar .pc>.bar{display:flex;margin-bottom:8px;opacity:.92}
+  /* Bible view inside presentation: always show book/chapter controls */
+  #pres.pres-bible .pc>.bar{
+    display:flex!important;flex-wrap:wrap;gap:6px;align-items:center;
+    position:sticky;top:0;z-index:5;
+    background:color-mix(in srgb,var(--bg) 92%,transparent);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    padding:8px 4px 10px;margin:0 0 12px;
+    border-bottom:1px solid var(--bd);opacity:1!important}
+  #pres.pres-bible .pc>.bar select{
+    min-height:34px;font-size:14px;padding:4px 8px;flex:1 1 auto;min-width:0}
+  #pres.pres-bible .pc>.bar .tseg{flex:0 0 auto}
+  #pres.pres-bible .pc>.bar .tseg button{min-height:32px;padding:4px 10px;font-size:13px}
+  #pres.pres-bible #pbt{padding-bottom:24px}
+  #pres.pres-bible #pbt .verse{font-size:1em;line-height:1.55;margin:0 0 .55em}
+  #pres.pres-bible #pg{opacity:.9}
+  @media(max-width:600px){
+    #pres.pres-bible .pc>.bar{gap:5px;padding:6px 2px 8px}
+    #pres.pres-bible .pc>.bar select{min-height:32px;font-size:13px;padding:3px 6px}
+    #pres.pres-bible .pc>.bar .tseg button{min-height:30px;padding:3px 8px;font-size:12px}
+  }
   #pres .pbar{height:2px;opacity:.35}
   #pres .pc .pser{font-size:.42em;opacity:.75;margin-bottom:.15em}
   #pres .pc h1{font-size:1.05em;margin:0 0 .15em}
@@ -882,21 +1110,25 @@ body.tts-on .toast{bottom:calc(env(safe-area-inset-bottom,0px) + 104px)}
 :root{--on-ac:#fff;--r:12px;
   --sh1:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.05);
   --sh2:0 18px 40px -10px rgba(16,24,40,.22),0 4px 12px rgba(16,24,40,.07);
-  --bg:#f3f4f8;--sf:#ffffff;--tx:#161b26;--mu:#677084;--bd:#e3e6ee;--ac:#3949b8;--ac2:#eaedfb;--hl:#ffe9a3;
-  --xr:#2a5a9e;--xr-bg:color-mix(in srgb,#2a5a9e 9%,var(--sf))}
-:root[data-theme=light]{--bg:#f3f4f8;--sf:#ffffff;--tx:#161b26;--mu:#677084;--bd:#e3e6ee;--ac:#3949b8;--ac2:#eaedfb;--hl:#ffe9a3;
-  --xr:#2a5a9e;--xr-bg:color-mix(in srgb,#2a5a9e 9%,var(--sf))}
-:root[data-theme=sepia]{--bg:#efe6d2;--sf:#f9f3e4;--tx:#2d261b;--mu:#6f6048;--bd:#dccfb0;--ac:#86470f;--ac2:#f0e1bf;--hl:#f2dc78;
-  --xr:#7a4510;--xr-bg:color-mix(in srgb,#7a4510 11%,var(--sf));
-  --sh1:0 1px 2px rgba(60,40,10,.08);--sh2:0 18px 40px -10px rgba(60,40,10,.25),0 4px 12px rgba(60,40,10,.08)}
-:root[data-theme=forest]{--bg:#eef3ee;--sf:#ffffff;--tx:#16221a;--mu:#586b5d;--bd:#d6e1d6;--ac:#2a6a3c;--ac2:#e2efe4;--hl:#dff0b8;
-  --xr:#1f5c38;--xr-bg:color-mix(in srgb,#1f5c38 10%,var(--sf))}
-:root[data-theme=dark]{--bg:#0d1017;--sf:#161a23;--tx:#e9edf5;--mu:#9aa5b8;--bd:#262c3a;--ac:#8c9eff;--ac2:#1d2339;--hl:#5a4d10;--on-ac:#0d1017;
-  --xr:#9eb6ff;--xr-bg:color-mix(in srgb,#8c9eff 14%,var(--sf));
-  --sh1:0 1px 2px rgba(0,0,0,.45);--sh2:0 18px 44px -10px rgba(0,0,0,.65),0 4px 12px rgba(0,0,0,.35)}
-:root[data-theme=midnight]{--bg:#0a121b;--sf:#111d2a;--tx:#e6eef6;--mu:#93a7bb;--bd:#1f3042;--ac:#6fb3f2;--ac2:#122437;--hl:#2c4a6b;--on-ac:#08121c;
-  --xr:#8ec8ff;--xr-bg:color-mix(in srgb,#6fb3f2 14%,var(--sf));
-  --sh1:0 1px 2px rgba(0,0,0,.45);--sh2:0 18px 44px -10px rgba(0,0,0,.65),0 4px 12px rgba(0,0,0,.35)}
+  --bg:#f7f5f0;--sf:#fffcf7;--tx:#1a1c1e;--mu:#5e646c;--bd:#e4e0d6;--ac:#8b4513;--ac2:#f3e8dc;--hl:#ffe08a;
+  --xr:#2c5f9e;--xr-bg:color-mix(in srgb,#2c5f9e 9%,var(--sf))}
+:root[data-theme=light]{--bg:#f7f5f0;--sf:#fffcf7;--tx:#1a1c1e;--mu:#5e646c;--bd:#e4e0d6;--ac:#8b4513;--ac2:#f3e8dc;--hl:#ffe08a;
+  --xr:#2c5f9e;--xr-bg:color-mix(in srgb,#2c5f9e 9%,var(--sf));--on-ac:#fff}
+:root[data-theme=sepia]{--bg:#f0e6d2;--sf:#faf4e6;--tx:#2a2418;--mu:#6b5d48;--bd:#d9ccb0;--ac:#7a4a12;--ac2:#ecdfc4;--hl:#f0d878;
+  --xr:#6b3d0e;--xr-bg:color-mix(in srgb,#6b3d0e 11%,var(--sf));--on-ac:#fff;
+  --sh1:0 1px 2px rgba(60,40,10,.08);--sh2:0 18px 40px -10px rgba(60,40,10,.22),0 4px 12px rgba(60,40,10,.07)}
+:root[data-theme=study]{--bg:#eef1f5;--sf:#ffffff;--tx:#1c2430;--mu:#5a6575;--bd:#d5dbe4;--ac:#2f5d9a;--ac2:#e3ebf6;--hl:#d4e5ff;
+  --xr:#1e4f8c;--xr-bg:color-mix(in srgb,#1e4f8c 10%,var(--sf));--on-ac:#fff}
+:root[data-theme=forest]{--bg:#eef1f5;--sf:#ffffff;--tx:#1c2430;--mu:#5a6575;--bd:#d5dbe4;--ac:#2f5d9a;--ac2:#e3ebf6;--hl:#d4e5ff;
+  --xr:#1e4f8c;--xr-bg:color-mix(in srgb,#1e4f8c 10%,var(--sf));--on-ac:#fff}
+:root[data-theme=sanctuary]{--bg:#f6f0ea;--sf:#fffaf6;--tx:#2a1814;--mu:#6e5348;--bd:#e5d5c8;--ac:#7b2d26;--ac2:#f0ddd6;--hl:#f5d9a8;
+  --xr:#5c2a24;--xr-bg:color-mix(in srgb,#7b2d26 10%,var(--sf));--on-ac:#fff}
+:root[data-theme=dark]{--bg:#12151a;--sf:#1a1f27;--tx:#e8ecf2;--mu:#9aa3b2;--bd:#2a313c;--ac:#d4a574;--ac2:#2a231c;--hl:#5c4a18;--on-ac:#1a1f27;
+  --xr:#9eb6ff;--xr-bg:color-mix(in srgb,#9eb6ff 14%,var(--sf));
+  --sh1:0 1px 2px rgba(0,0,0,.4);--sh2:0 18px 44px -10px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.3)}
+:root[data-theme=midnight]{--bg:#0a1018;--sf:#111a26;--tx:#e4eef8;--mu:#8fa3b8;--bd:#1e2c3d;--ac:#6ba3d9;--ac2:#132233;--hl:#2a4560;--on-ac:#0a1018;
+  --xr:#8ec8ff;--xr-bg:color-mix(in srgb,#6ba3d9 14%,var(--sf));
+  --sh1:0 1px 2px rgba(0,0,0,.4);--sh2:0 18px 44px -10px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.3)}
 :root[data-theme=contrast]{--on-ac:#fff;--sh1:none;--sh2:0 0 0 2px #000;
   --xr:#0b3fd1;--xr-bg:#e6ecff}
 
@@ -970,10 +1202,10 @@ main{padding:16px 14px 40px}
   color:var(--ac);background:var(--ac2);padding:1px 6px;margin-right:9px;border-radius:7px;
   vertical-align:.6em;letter-spacing:0;font-variant-numeric:tabular-nums}
 .vn:hover{text-decoration:none;background:var(--ac);color:var(--on-ac)}
-.verse.serm{box-shadow:inset 3px 0 0 var(--ac);background:color-mix(in srgb,var(--ac2) 38%,transparent)}
+.verse.serm{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--ac) 70%,transparent);
+  background:color-mix(in srgb,var(--ac2) 22%,transparent)}
 .vnote{font-family:"Inter",system-ui,sans-serif;font-size:.54em;font-weight:700;padding:2px 9px;vertical-align:.9em}
-.vpin{border-radius:10px;box-shadow:var(--sh1);background:var(--sf);border-left-width:3px;padding:5px 10px}
-.vpin:hover{background:var(--ac2)}
+.vpin{font-family:"Inter",var(--f),system-ui,sans-serif}
 .hlbar{border-radius:12px;box-shadow:var(--sh1)}
 .w.has{border-bottom-width:2px}
 .xr{font-family:"Inter",var(--f),system-ui,sans-serif}
@@ -1022,12 +1254,12 @@ main{padding:16px 14px 40px}
 
 /* ---------- sermon editor ---------- */
 #ttl{letter-spacing:-.01em;border-radius:12px;padding:10px 14px}
-.tb{background:color-mix(in srgb,var(--sf) 94%,transparent);border:1px solid var(--bd);border-radius:12px;
-  box-shadow:0 4px 14px color-mix(in srgb,var(--tx) 8%,transparent);padding:5px 6px;gap:2px;
-  position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hdr,52px) + var(--edbar,40px));z-index:18}
-.tb button,.tb select{background-color:transparent;border-color:transparent;box-shadow:none;border-radius:8px;color:var(--tx)}
-.tb button:hover,.tb select:hover{background-color:var(--ac2);border-color:transparent}
-.tb .sep{background:var(--bd);margin:4px 5px}
+.tb{font-family:"Inter",system-ui,sans-serif}
+.tb .tbb button,.tb .tbb select{font-family:inherit}
+.tb button.colb{font-weight:700;position:relative;padding-bottom:8px}
+.tb button.colb::after{content:"";position:absolute;left:6px;right:6px;bottom:3px;height:3px;
+  border-radius:2px;background:currentColor;opacity:.55}
+.tb button.colb.hl::after{background:#ffd54f;opacity:1}
 .ntb{border-radius:11px}
 .bt{border-radius:8px;line-height:1.75;padding:5px 8px;color:var(--tx);caret-color:var(--ac)}
 .blk[data-t=quote] .bt{border-left-width:3px;border-radius:0 9px 9px 0;
@@ -1101,6 +1333,68 @@ main{padding:16px 14px 40px}
   .tab{padding:6px 9px;font-size:13.5px}
   header h1{margin-right:2px!important}
 }
+
+/* ========== mobile compact controls (phones) ========== */
+@media(max-width:600px){
+  header{padding:5px 8px;gap:5px}
+  header h1{font-size:14px}
+  .tab{padding:5px 9px;font-size:13px;min-height:30px}
+  button,select,input{min-height:30px;padding:4px 8px;font-size:13px;border-radius:7px}
+  .tools button,.tools select{min-height:30px;font-size:12.5px;padding:4px 8px}
+  .tools .tgl{font-size:12.5px}
+  #app>.bar,.bbnav{gap:5px}
+  #app>.bar button,#app>.bar select,#app>.bar input{
+    min-height:30px;min-width:30px;padding:3px 7px;font-size:12.5px;border-radius:7px}
+  #app>.bar .tseg button{min-height:28px;padding:3px 8px;font-size:12px}
+  #app>.bar .nvg button{min-width:30px;padding:3px 5px;font-size:14px}
+  #ed .bar{padding:5px 6px;gap:4px}
+  #ed .bar button{min-height:28px;padding:3px 7px;font-size:12px}
+  .tb{padding:5px 6px;gap:3px}
+  .tb .tbgl{display:none}
+  .tb .tbg{display:contents}
+  .tb .tbb{display:contents;background:transparent;border:none;padding:0}
+  .tb .tbb button,.tb .tbb select{min-height:28px;min-width:28px;padding:3px 6px;font-size:12.5px;
+    background:var(--bg);border:1px solid var(--bd);border-radius:7px}
+  .tb .tbb select{min-width:4.8em;font-size:12px}
+  .ntb-pro{padding:5px;gap:5px}
+  .ntb-pro .ntbb button{min-height:28px;min-width:28px;padding:3px 6px;font-size:12.5px}
+  .ntb-pro .nt-sw .sw{width:22px;height:22px;min-width:22px}
+  .ntb-pro .ntgl{font-size:.58em}
+  .meta select,.meta input{min-height:30px;font-size:13px;padding:4px 7px}
+  .vpin{padding:7px 8px;font-size:.8em}
+  .vpin .vpico{width:24px;height:24px;font-size:.85em}
+  .dlg button{min-height:32px;padding:5px 10px;font-size:13px}
+  .dlg .dfoot button{min-height:34px}
+}
+@media(max-width:380px){
+  button,select,input{font-size:12.5px;padding:3px 6px}
+  .bbnav .acts button{min-width:calc(50% - 3px);font-size:12px;padding:3px 6px}
+  .tab{padding:4px 7px;font-size:12.5px}
+}
+
+
+/* presentation word-note reader — always on top */
+.pres-note-layer{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(0,0,0,.55);
+  display:flex;align-items:center;justify-content:center;
+  padding:max(16px,env(safe-area-inset-top)) 18px max(16px,env(safe-area-inset-bottom));
+  pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.pres-note-card{
+  background:var(--sf);color:var(--tx);
+  width:100%;max-width:520px;max-height:min(78vh,640px);
+  overflow:auto;padding:18px 18px 14px;border-radius:14px;
+  border:2px solid var(--ac);
+  box-shadow:0 16px 48px rgba(0,0,0,.4);
+  font-size:clamp(16px,4.2vw,22px);line-height:1.55}
+.pres-note-word{
+  font-weight:700;font-size:1.2em;color:var(--ac);
+  margin:0 0 10px;padding-bottom:8px;
+  border-bottom:1px solid var(--bd)}
+.pres-note-body{white-space:pre-wrap;margin:0 0 14px}
+.pres-note-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.pres-note-actions button{min-height:40px;padding:8px 16px;font-size:1em}
+
 </style></head><body>
 <header>
  <h1><svg class="logo" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" style="fill:var(--ac)"/><path d="M16 9.5c-2.2-1.6-5-2.2-8-2v14.2c3-.2 5.8.4 8 2 2.2-1.6 5-2.2 8-2V7.5c-3-.2-5.8.4-8 2zM16 9.5v14.2" style="fill:none;stroke:var(--on-ac);stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round"/></svg><span>Telugu Bible</span></h1>
@@ -1110,8 +1404,8 @@ main{padding:16px 14px 40px}
  <span class="sp"></span>
  <button id="tgl" title="Settings" aria-label="Settings">☰</button>
  <div class="tools" id="tools">
-  <select id="th" title="Theme"><option value="auto">Auto</option><option value="light">Paper</option><option value="sepia">Sepia</option><option value="forest">Forest</option><option value="dark">Dark</option><option value="midnight">Midnight</option><option value="contrast">High contrast</option></select>
-  <select id="fn" title="Telugu font"><option>Noto Sans Telugu</option><option>Noto Serif Telugu</option><option>Hind Guntur</option><option>Mandali</option><option>Ramabhadra</option><option>Gidugu</option><option>Suranna</option></select>
+  <select id="th" title="Theme"><option value="auto">Auto</option><option value="light">Paper</option><option value="sepia">Parchment</option><option value="study">Study</option><option value="sanctuary">Sanctuary</option><option value="dark">Night</option><option value="midnight">Midnight</option><option value="contrast">High contrast</option></select>
+  <select id="fn" title="Telugu font"><option value="Noto Serif Telugu">Noto Serif Telugu — book</option><option value="Noto Sans Telugu">Noto Sans Telugu — modern</option><option value="Hind Guntur">Hind Guntur — clear</option><option value="Mallanna">Mallanna — traditional</option><option value="Tenali Ramakrishna">Tenali Ramakrishna — literary</option><option value="Gurajada">Gurajada — classic</option><option value="Chathura">Chathura — reading</option><option value="Suranna">Suranna — print serif</option></select>
   <button id="fm" title="Font size −">A−</button><button id="fp" title="Font size +">A+</button>
   <label class="tgl" title="Tap a word to attach a word note"><input type="checkbox" id="wct">Word notes</label>
   <button id="bk" title="Back up everything to a .json file">↓ Backup</button>
@@ -1145,7 +1439,7 @@ const wc=s=>plain(s).split(/\s+/).filter(Boolean).length;
 /* ---------- state ---------- */
 const DEF=()=>({sermons:[],trash:[],notes:{},words:{},edits:{},bible:{},bm:{},vh:{},ser:{},
   xr:{add:{},hide:{}},
-  set:{theme:'',font:'Noto Sans Telugu',size:20,wclick:0,pos:{b:42,c:3},psize:0,
+  set:{theme:'',font:'Noto Serif Telugu',size:20,wclick:0,pos:{b:42,c:3},psize:0,
     xrefs:1,ttsRate:1,ttsVoice:'',ttsAuto:0,ttsFollow:1}});
 let S=DEF();
 /* ---------- storage: IndexedDB (hundreds of MB) with a localStorage fallback ---------- */
@@ -1391,7 +1685,7 @@ function parseRefFor(str,bookHint){
 }
 function linkDom(root){if(!root)return;
   const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
-    const p=n.parentElement;if(!p)return 2;if(p.closest('.vref,script,style'))return 2;return 1}});
+    const p=n.parentElement;if(!p)return 2;if(p.closest('.vref,.wc,script,style'))return 2;return 1}});
   const ns=[];while(w.nextNode())ns.push(w.currentNode);
   ns.forEach(n=>{const t=n.nodeValue;if(!t||t.length<4)return;
     REF.lastIndex=0;if(!REF.test(t))return;REF.lastIndex=0;
@@ -1422,10 +1716,13 @@ function cleanHTML(html){
         n.replaceWith(frag);return;
       }
       Array.prototype.slice.call(n.attributes).forEach(a=>{
-        if(a.name.toLowerCase()==='style'){
+        const an=a.name.toLowerCase();
+        if(an==='style'){
           const keep=a.value.split(';').map(x=>x.trim()).filter(Boolean)
             .filter(x=>NSTYLE.some(k=>x.toLowerCase().indexOf(k)===0));
           if(keep.length)n.setAttribute('style',keep.join(';'));else n.removeAttribute('style');
+        }else if(an==='class'||an==='data-c'||an==='data-k'||an==='data-w'||an==='title'){
+          /* keep word-note / word marks */
         }else n.removeAttribute(a.name);
       });
       walk(n);
@@ -1440,10 +1737,14 @@ const noteText=s=>{const d=document.createElement('div');d.innerHTML=cleanHTML(s
 const app=$('#app');
 const prefersDark=()=>{try{return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)}catch(e){return false}};
 function applySet(){const r=document.documentElement;
-  const pref=S.set.theme||'auto';
+  let pref=S.set.theme||'auto';
+  if(pref==='forest'){pref='study';S.set.theme='study'}
   const t=pref==='auto'?(prefersDark()?'dark':'light'):pref;
   r.dataset.theme=t;
   const th=$('#th');if(th)th.value=pref;
+  const fontMap={Mandali:'Mallanna',Ramabhadra:'Tenali Ramakrishna',Gidugu:'Gurajada'};
+  if(S.set.font&&fontMap[S.set.font])S.set.font=fontMap[S.set.font];
+  if(!S.set.font)S.set.font='Noto Serif Telugu';
   try{
     const bg=getComputedStyle(r).getPropertyValue('--bg').trim();
     const m=document.querySelector('meta[name=theme-color]');
@@ -1454,6 +1755,32 @@ function applySet(){const r=document.documentElement;
   app.style.fontSize=(S.set.size||20)+'px';
   const wc2=$('#wct');if(wc2)wc2.checked=!!S.set.wclick;
   document.body.classList.toggle('wmode',!!S.set.wclick)}
+document.addEventListener('copy',e=>{
+  if(!multiSel||view!=='ser')return;
+  const plain=multiSelPlain(),rich=multiSelHTML();
+  if(!plain)return;
+  e.clipboardData.setData('text/plain',plain);
+  if(rich)e.clipboardData.setData('text/html',rich);
+  e.preventDefault();
+  toast('Copied '+(multiSel.b-multiSel.a+1)+' paragraphs');
+});
+document.addEventListener('cut',e=>{
+  if(!multiSel||view!=='ser'||!cur)return;
+  const plain=multiSelPlain(),rich=multiSelHTML();
+  if(!plain)return;
+  const a=multiSel.a,n=multiSel.b-multiSel.a+1;
+  e.clipboardData.setData('text/plain',plain);
+  if(rich)e.clipboardData.setData('text/html',rich);
+  e.preventDefault();
+  cur.blocks.splice(a,n);
+  if(!cur.blocks.length)cur.blocks=[{t:'p',h:'',lvl:0}];
+  clearMultiSel();
+  paintBlocks();
+  focusB(Math.min(a,cur.blocks.length-1));
+  pushHist();touch();
+  toast('Cut '+n+' paragraphs');
+});
+
 function fitHeader(){
   const h=document.querySelector('header');
   if(h)document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');
@@ -1461,7 +1788,13 @@ function fitHeader(){
   if(bar)document.documentElement.style.setProperty('--edbar',bar.offsetHeight+'px');
   else document.documentElement.style.setProperty('--edbar','0px');
 }
-$('#tgl').onclick=()=>{ $('#tools').classList.toggle('open'); setTimeout(fitHeader,0); };
+$('#tgl').onclick=()=>{ $('#tools').classList.toggle('open'); setTimeout(fitHeader,0);
+  /* ready to type: focus the first empty paragraph */
+  setTimeout(()=>{
+    if(!cur||!cur.blocks||!cur.blocks.length)return;
+    const first=$$('#bl .bt')[0];
+    if(first&&isBlockEmpty(first))focusB(0);
+  },30); };
 window.addEventListener('resize',fitHeader);
 fitHeader();
 $('#th').onchange=e=>{S.set.theme=e.target.value;applySet();save()};
@@ -1673,26 +2006,34 @@ function bibleHTML(b,c){
     const hl=+S.vh[k]||0;
     const one=q=>{
       const col=seriesColorOf(q.series);
-      return '<div class="vpin" data-id="'+esc(q.id)+'" title="Present this sermon"'+
-        (col?' style="border-left-color:'+col+';background:color-mix(in srgb,'+col+' 12%,var(--sf))"':'')+'>'+
-        '<span class="vpgo">▸</span>'+
-        (q.series?'<span class="vpser"'+(col?' style="color:'+col+'"':'')+'>'+esc(q.series)+'</span>'+
-                  '<span class="vpdash">—</span>':'')+
-        '<b class="vpttl">'+esc(q.title)+'</b>'+
-        '<small class="vpref">'+esc(q.ref)+'</small></div>';
+      const st=col?' style="--pin:'+col+'"':'';
+      return '<div class="vpin" data-id="'+esc(q.id)+'" title="Open presentation"'+st+'>'+
+        '<span class="vpico" aria-hidden="true">¶</span>'+
+        '<span class="vpbody">'+
+          '<span class="vptop">'+
+            (q.series?'<span class="vpser">'+esc(q.series)+'</span>':'<span class="vpk">Sermon</span>')+
+          '</span>'+
+          '<b class="vpttl">'+esc(q.title)+'</b>'+
+          (q.ref?'<small class="vpref">'+esc(q.ref)+'</small>':'')+
+        '</span>'+
+        '<span class="vpgo" aria-hidden="true">▸</span></div>';
     };
     const list=mk.pins[v]||[];
     let pin='';
-    if(list.length===1)pin=one(list[0]);
+    if(list.length===1)pin='<div class="vpins">'+one(list[0])+'</div>';
     else if(list.length>1){
-      /* several sermons on one verse: one line that opens */
       const codes=list.map(q=>q.series).filter(Boolean);
       const col=seriesColorOf(codes[0]||'');
+      const st=col?' style="--pin:'+col+'"':'';
       pin='<div class="vpins">'+
-        '<div class="vpin grp" data-grp="v'+v+'" title="Show the sermons">'+
-          '<span class="vpgo">▸</span>'+
-          '<b class="vpttl">'+list.length+' sermons</b>'+
-          '<small class="vpref">'+esc(codes.join(' · '))+'</small></div>'+
+        '<div class="vpin grp" data-grp="v'+v+'" title="Show sermons"'+st+'>'+
+          '<span class="vpico" aria-hidden="true">📚</span>'+
+          '<span class="vpbody">'+
+            '<span class="vptop"><span class="vpk">'+list.length+' sermons</span></span>'+
+            '<b class="vpttl">Tap to expand</b>'+
+            (codes.length?'<small class="vpref">'+esc(codes.join(' · '))+'</small>':'')+
+          '</span>'+
+          '<span class="vpgo">▸</span></div>'+
         '<div class="vpinsub hid">'+list.map(one).join('')+'</div></div>';
     }
     return '<div class="verse'+(hl?' vh'+hl:'')+(mk.cover[v]?' serm':'')+'" data-v="'+v+'">'+pin+
@@ -1893,28 +2234,36 @@ function scrollToVerse(v){const el=$('#bt .verse[data-v="'+v+'"]');
 /* ---------- verse dialog ---------- */
 function verseDialog(b,c,v){
   const book=EN[b],k=book+'|'+c+'|'+v,t=vtext(book,c,v)||'';
+  const hlNames=['','Yellow','Green','Blue','Pink','Orange','Purple','Teal','Grey'];
+  const curHl=+S.vh[k]||0;
   const html=
    '<div class="dhead"><b class="ac">'+esc(TE[b])+' '+c+':'+v+'</b>'+
      '<button class="x dhx" title="Close" aria-label="Close">✕</button></div>'+
    '<p class="vtext">'+esc(t)+'</p>'+
-   '<div class="hlrow"><span class="sech">Highlight</span>'+
-     VCOL.map((col,i)=>i?'<button class="sw" data-h="'+i+'" style="background:'+col+'" title="Highlight"></button>':'').join('')+
-     '<button class="sw none" data-h="0" title="Remove">✕</button></div>'+
    '<div class="sec"><div class="sech">Commentary</div>'+
-   '<div class="ntb">'+
-     '<button data-c="bold" title="Bold (Ctrl+B)"><b>B</b></button>'+
-     '<button data-c="italic" title="Italic (Ctrl+I)"><i>I</i></button>'+
-     '<button data-c="underline" title="Underline (Ctrl+U)"><u>U</u></button>'+
-     '<button data-c="strikeThrough" title="Strike-through"><s>S</s></button>'+
-     '<span class="sep"></span>'+
-     '<button data-c="hiliteColor" data-v="#ffe27a" class="hl" style="--c:#ffe27a" title="Highlight yellow"><span>A</span></button>'+
-     '<button data-c="hiliteColor" data-v="#c8f7c5" class="hl" style="--c:#c8f7c5" title="Highlight green"><span>A</span></button>'+
-     '<button data-c="hiliteColor" data-v="#bde3ff" class="hl" style="--c:#bde3ff" title="Highlight blue"><span>A</span></button>'+
-     '<span class="sep"></span>'+
-     '<button data-c="insertUnorderedList" title="Bullet list">•</button>'+
-     '<button data-c="insertOrderedList" title="Numbered list">1.</button>'+
-     '<span class="sep"></span>'+
-     '<button data-c="removeFormat" title="Clear formatting">Aa</button>'+
+   '<div class="ntb ntb-pro" role="toolbar" aria-label="Commentary tools">'+
+     '<div class="ntg"><span class="ntgl">Format</span><div class="ntbb">'+
+       '<button data-c="bold" title="Bold (Ctrl+B)"><b>B</b></button>'+
+       '<button data-c="italic" title="Italic (Ctrl+I)"><i>I</i></button>'+
+       '<button data-c="underline" title="Underline (Ctrl+U)"><u>U</u></button>'+
+       '<button data-c="strikeThrough" title="Strike-through"><s>S</s></button>'+
+       '<button type="button" data-act="textcol" class="colb" title="Text colour">A</button>'+
+       '<button type="button" data-act="hilite" class="colb hl" title="Highlight text">A</button>'+
+       '<button data-c="removeFormat" title="Clear formatting">Aa</button>'+
+     '</div></div>'+
+     '<div class="ntg"><span class="ntgl">List</span><div class="ntbb">'+
+       '<button data-c="insertUnorderedList" title="Bullet list">•</button>'+
+       '<button data-c="insertOrderedList" title="Numbered list">1.</button>'+
+     '</div></div>'+
+     '<div class="ntg"><span class="ntgl">Insert</span><div class="ntbb">'+
+       '<button type="button" data-act="linkrefs" title="Turn typed references into links">Link refs</button>'+
+       '<button type="button" data-act="addref" title="Insert a verse hyperlink">Verse link</button>'+
+       '<button type="button" data-act="wnote" title="Word note on this verse">Word note</button>'+
+     '</div></div>'+
+     '<div class="ntg ntg-verse"><span class="ntgl">Verse mark</span><div class="ntbb nt-sw">'+
+       VCOL.map((col,i)=>i?'<button type="button" class="sw'+(curHl===i?' sel':'')+'" data-h="'+i+'" style="background:'+col+'" title="Mark verse '+hlNames[i]+'"></button>':'').join('')+
+       '<button type="button" class="sw none'+(curHl===0?' sel':'')+'" data-h="0" title="Clear verse mark">✕</button>'+
+     '</div></div>'+
    '</div>'+
    '<div class="cmt" contenteditable="true" data-ph="Write a commentary…">'+cleanHTML(S.notes[k]||'')+'</div></div>'+
    xrefRows(b,c,v,8)+
@@ -1926,11 +2275,11 @@ function verseDialog(b,c,v){
      '<button class="x">Close</button><button class="pri ok">Save</button></div>';
   modal(html,(d,close)=>{
     d.querySelectorAll('.x').forEach(btn=>btn.onclick=close);
-    d.querySelectorAll('.sw').forEach(sw=>sw.onclick=()=>{
+    d.querySelectorAll('.ntb .sw').forEach(sw=>sw.onclick=()=>{
       const h=+sw.dataset.h;if(h)S.vh[k]=h;else delete S.vh[k];save();
-      d.querySelectorAll('.sw').forEach(x=>x.classList.toggle('sel',+x.dataset.h===h));
-      renderBible();});
-    d.querySelectorAll('.sw').forEach(x=>x.classList.toggle('sel',(+x.dataset.h||0)===(+S.vh[k]||0)));
+      d.querySelectorAll('.ntb .sw').forEach(x=>x.classList.toggle('sel',(+x.dataset.h||0)===h));
+      renderBible();
+    });
     d.querySelector('.cp').onclick=()=>copyText(t+'\n— '+TE[b]+' '+c+':'+v);
     d.querySelector('.ls2').onclick=()=>{close();ttsStart(b,c,v)};
     d.querySelectorAll('.xrow[data-b]').forEach(r=>r.onclick=()=>{
@@ -1964,23 +2313,106 @@ function verseDialog(b,c,v){
     };
     cmt.addEventListener('mouseup',remember);
     cmt.addEventListener('keyup',remember);
+    const restoreSel=()=>{
+      const live=getSelection();
+      let range=null;
+      if(live&&live.rangeCount&&cmt.contains(live.anchorNode))range=live.getRangeAt(0).cloneRange();
+      else if(savedRange)range=savedRange;
+      cmt.focus();
+      if(range){const sel=getSelection();sel.removeAllRanges();sel.addRange(range)}
+      return range;
+    };
+    const cmtCmd=(c0,val)=>{
+      restoreSel();
+      try{
+        if(c0==='hiliteColor')document.execCommand('hiliteColor',false,val||'#ffe27a');
+        else if(c0==='foreColor'){
+          const def=getComputedStyle(document.documentElement).getPropertyValue('--tx').trim()||'#1c1f23';
+          document.execCommand('foreColor',false,val||def);
+        }else document.execCommand(c0,false,null);
+      }catch(e){}
+      remember();
+    };
     d.querySelectorAll('.ntb [data-c]').forEach(btn=>{
       btn.addEventListener('mousedown',e=>{e.preventDefault();remember()});
-      btn.onclick=()=>{
-        /* keep whatever is selected — live selection first, remembered one second */
-        const live=getSelection();
-        let range=null;
-        if(live&&live.rangeCount&&cmt.contains(live.anchorNode))range=live.getRangeAt(0).cloneRange();
-        else if(savedRange)range=savedRange;
-        cmt.focus();
-        if(range){const sel=getSelection();sel.removeAllRanges();sel.addRange(range)}
-        const c0=btn.dataset.c;
-        try{
-          if(c0==='hiliteColor')document.execCommand('hiliteColor',false,btn.dataset.v||'#ffe27a');
-          else document.execCommand(c0,false,null);
-        }catch(e){}
-        remember();
+      btn.onclick=()=>cmtCmd(btn.dataset.c,btn.dataset.v);
+    });
+    d.querySelectorAll('.ntb [data-act]').forEach(btn=>{
+      btn.addEventListener('mousedown',e=>{e.preventDefault();remember()});
+      btn.onclick=async()=>{
+        const act=btn.dataset.act;
+        if(act==='textcol'||act==='hilite'){
+          restoreSel();
+          /* local palette that formats the commentary field, not the sermon editor */
+          cpalClose();
+          const kind=act==='textcol'?'text':'hilite';
+          const cols=kind==='text'?TEXT_COLS:HL_COLS;
+          const el=document.createElement('div');
+          el.className='cpal';
+          el.innerHTML='<div class="cph">'+(kind==='text'?'Text colour':'Highlight')+'</div>'+
+            '<div class="cpg">'+
+              cols.map(c=>'<button class="csw" data-c="'+c+'" style="--c:'+c+'" title="'+c+'"></button>').join('')+
+              '<button class="csw none" data-c="" title="'+(kind==='text'?'Default colour':'No highlight')+'">✕</button>'+
+            '</div>';
+          document.body.append(el);cpalEl=el;placePop(el,btn);
+          el.querySelectorAll('.csw').forEach(b=>b.onclick=()=>{
+            const v=b.dataset.c;cpalClose();
+            if(kind==='text')cmtCmd('foreColor',v||'');
+            else cmtCmd('hiliteColor',v||'transparent');
+          });
+          setTimeout(()=>{
+            document.addEventListener('click',cpalOutside,true);
+            document.addEventListener('keydown',cpalKey,true);
+          },0);
+          return;
+        }
+        if(act==='linkrefs'){
+          linkDom(cmt);remember();toast('Linked Bible references in the commentary');return;
+        }
+        if(act==='addref'){
+          const r=await ask('Verse reference (e.g. John 3:16)','');
+          if(!r)return;
+          const p=parseRef(r);
+          if(!p){toast('Could not read that reference');return}
+          const label=TE[p.b]+' '+p.c+':'+p.v+(p.e>p.v?'-'+p.e:'');
+          restoreSel();
+          const sp=document.createElement('span');
+          sp.className='vref';sp.textContent=label;
+          sp.dataset.b=EN[p.b];sp.dataset.c=String(p.c);sp.dataset.v=String(p.v);sp.dataset.e=String(p.e);
+          const sel=getSelection();
+          if(sel&&sel.rangeCount&&cmt.contains(sel.anchorNode)){
+            const range=sel.getRangeAt(0);
+            range.deleteContents();range.insertNode(sp);
+            range.setStartAfter(sp);range.collapse(true);
+            sel.removeAllRanges();sel.addRange(range);
+          }else{
+            cmt.appendChild(sp);cmt.appendChild(document.createTextNode(' '));
+          }
+          remember();return;
+        }
+        if(act==='wnote'){
+          const w=await ask('Word in this verse to annotate','');
+          if(w===null)return;
+          const word=String(w).trim();
+          if(!word)return;
+          const wk=k+'|'+word;
+          const existing=S.words[wk]||'';
+          const note=await ask('Note for “'+word+'”',existing,1);
+          if(note===null)return;
+          if(String(note).trim())S.words[wk]=String(note).trim();else delete S.words[wk];
+          save();renderBible();toast(String(note).trim()?'Word note saved':'Word note removed');
+          return;
+        }
       };
+    });
+    /* open linked refs inside the commentary */
+    cmt.addEventListener('click',e=>{
+      const vr=e.target.closest('.vref');
+      if(!vr)return;
+      e.preventDefault();
+      const bi=EN.indexOf(vr.dataset.b);
+      if(bi<0)return;
+      openRefPopup(bi,+vr.dataset.c,+vr.dataset.v,+(vr.dataset.e||vr.dataset.v));
     });
     /* the caret can always get out of a list */
     const exitList=li=>{
@@ -2565,9 +2997,9 @@ function blocksHTML(bl,ed){
     return '<div class="blk'+(b.done?' done':'')+(open?' open':'')+(vis[i]?'':' hid')+
       '" data-t="'+b.t+'" data-i="'+i+'" style="--lvl:'+lvl+'">'+
       '<span class="mk"'+(isT?' role="button" aria-expanded="'+(open?'true':'false')+'" title="Collapse / expand"':' title="Block"')+'></span>'+
-      '<div class="bt" '+(ed?'contenteditable="true" spellcheck="false"':'')+
-        ' data-ph="Type…">'+(b.h||'')+'</div></div>';
-  }).join('')}
+      '<div class="bt" '+(ed?'contenteditable="true" spellcheck="true"':'')+
+        ' data-ph="'+(i===0?'Start writing your sermon…':'Continue typing…')+'">'+(b.h||'')+'</div></div>';
+  }).join('')+(ed?'<div class="bl-pad" id="blpad" role="button" tabindex="0" title="Add a paragraph">+ New paragraph</div>':'')}
 /* the chapter number counts 1…1189 across the whole Bible */
 /* Series follows Book + Reference: Genesis 1 → SER-0001 … Revelation 22 → SER-1189.
    Type your own value and it stops following. */
@@ -2780,8 +3212,49 @@ function focusB(i,atEnd,offset){
 }
 
 let blockPainting=false;
+
+/* select text across several paragraph blocks (for copy / cut) */
+let multiSel=null; /* {a,b} inclusive indices */
+function clearMultiSel(){
+  if(!multiSel)return;
+  multiSel=null;
+  $$('#bl .blk.multi-sel').forEach(b=>b.classList.remove('multi-sel'));
+}
+function applyMultiSel(a,b){
+  const lo=Math.min(a,b),hi=Math.max(a,b);
+  multiSel={a:lo,b:hi};
+  $$('#bl .blk').forEach(el=>{
+    const i=+el.dataset.i;
+    el.classList.toggle('multi-sel',i>=lo&&i<=hi);
+  });
+}
+function multiSelPlain(){
+  if(!multiSel||!cur)return '';
+  const parts=[];
+  for(let i=multiSel.a;i<=multiSel.b;i++){
+    const el=$$('#bl .bt')[i];
+    if(!el)continue;
+    const t=(el.innerText||el.textContent||'').replace(/\u00a0/g,' ');
+    if(cur.blocks[i]&&cur.blocks[i].t==='hr')parts.push('---');
+    else parts.push(t);
+  }
+  return parts.join('\n');
+}
+function multiSelHTML(){
+  if(!multiSel||!cur)return '';
+  const parts=[];
+  for(let i=multiSel.a;i<=multiSel.b;i++){
+    const el=$$('#bl .bt')[i];
+    if(!el)continue;
+    if(cur.blocks[i]&&cur.blocks[i].t==='hr')parts.push('<hr>');
+    else parts.push('<p>'+(el.innerHTML||'')+'</p>');
+  }
+  return parts.join('');
+}
+
 function paintBlocks(){
   const bl=$('#bl');if(!bl||!cur)return;
+  multiSel=null;
   blockPainting=true;
   bl.innerHTML=blocksHTML(cur.blocks,1);
   blockPainting=false;
@@ -2819,42 +3292,62 @@ function renderEd(){
       '<button id="pnt">Print</button><button class="dng" id="dl">Delete</button>'+
       '<span class="sp"></span><small class="muted" id="wc"></small>'+
     '</div>'+
-    '<div class="tb">'+
-      '<button data-c="bold" title="Bold (Ctrl+B)"><b>B</b></button>'+
-      '<button data-c="italic" title="Italic (Ctrl+I)"><i>I</i></button>'+
-      '<button data-c="underline" title="Underline (Ctrl+U)"><u>U</u></button>'+
-      '<button data-c="strikeThrough" title="Strike"><s>S</s></button>'+
-      '<button data-act="textcol" class="colb" title="Text colour">A</button>'+
-      '<button data-act="hilite" class="colb hl" title="Highlight colour">A</button>'+
-      '<button data-c="clear" title="Clear formatting">Aa</button>'+
-      '<span class="sep"></span>'+
-      '<button data-act="ul" title="Bullet list">•</button>'+
-      '<button data-act="num" title="Numbered list">1.</button>'+
-      '<button data-act="wcomment" title="Comment on the selected word">Comment</button>'+
-      '<span class="sep"></span>'+
-      '<select id="ty" title="Block type">'+
-        '<option value="p">Text</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option>'+
-        '<option value="h3">Heading 3</option><option value="ul">Bullet</option><option value="num">Numbered</option>'+
-        '<option value="todo">To-do</option><option value="toggle">Toggle list</option>'+
-        '<option value="quote">Quote</option><option value="callout">Callout</option>'+
-        '<option value="code">Code</option><option value="hr">Divider</option></select>'+
-      '<button data-act="addblk" title="New block">+</button>'+
-      '<button data-act="toggle" title="Toggle list">Toggle</button>'+
-      '<button data-act="outdent" title="Outdent (Shift+Tab)">←</button>'+
-      '<button data-act="indent" title="Indent (Tab)">→</button>'+
-      '<button data-act="up" title="Move up (Alt+↑)">↑</button>'+
-      '<button data-act="down" title="Move down (Alt+↓)">↓</button>'+
-      '<button data-act="dup" title="Duplicate block">Copy</button>'+
-      '<button data-act="del" title="Delete block">×</button>'+
-      '<span class="sep"></span>'+
-      '<button data-act="verse" title="Insert Bible verse">Verse +</button>'+
-      '<button data-c="vers" title="Link references in this block">Refs</button>'+
-      '<span class="sep"></span>'+
-      '<button data-act="undo" title="Undo (Ctrl+Z)">↶</button>'+
-      '<button data-act="redo" title="Redo (Ctrl+Y)">↷</button>'+
+    '<div class="tb" role="toolbar" aria-label="Sermon tools">'+
+      '<div class="tbg" data-g="format" title="Text format">'+
+        '<span class="tbgl">Format</span>'+
+        '<div class="tbb">'+
+          '<button data-c="bold" title="Bold (Ctrl+B)"><b>B</b></button>'+
+          '<button data-c="italic" title="Italic (Ctrl+I)"><i>I</i></button>'+
+          '<button data-c="underline" title="Underline (Ctrl+U)"><u>U</u></button>'+
+          '<button data-c="strikeThrough" title="Strike"><s>S</s></button>'+
+          '<button data-act="textcol" class="colb" title="Text colour">A</button>'+
+          '<button data-act="hilite" class="colb hl" title="Highlight colour">A</button>'+
+          '<button data-c="clear" title="Clear formatting">Aa</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="tbg" data-g="list" title="Lists">'+
+        '<span class="tbgl">List</span>'+
+        '<div class="tbb">'+
+          '<button data-act="ul" title="Bullet list">•</button>'+
+          '<button data-act="num" title="Numbered list">1.</button>'+
+          '<button data-act="wcomment" title="Comment on the selected word">Note</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="tbg tbg-wide" data-g="block" title="Block structure">'+
+        '<span class="tbgl">Block</span>'+
+        '<div class="tbb">'+
+          '<select id="ty" title="Block type">'+
+            '<option value="p">Text</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option>'+
+            '<option value="h3">Heading 3</option><option value="ul">Bullet</option><option value="num">Numbered</option>'+
+            '<option value="todo">To-do</option><option value="toggle">Toggle list</option>'+
+            '<option value="quote">Quote</option><option value="callout">Callout</option>'+
+            '<option value="code">Code</option><option value="hr">Divider</option></select>'+
+          '<button data-act="addblk" title="Add block below (Shift+click = above)">+</button>'+
+          '<button data-act="outdent" title="Outdent (Shift+Tab)">←</button>'+
+          '<button data-act="indent" title="Indent (Tab)">→</button>'+
+          '<button data-act="up" title="Move up (Alt+↑)">↑</button>'+
+          '<button data-act="down" title="Move down (Alt+↓)">↓</button>'+
+          '<button data-act="dup" title="Duplicate block">⎘</button>'+
+          '<button data-act="del" class="tbdng" title="Delete block">×</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="tbg" data-g="insert" title="Insert">'+
+        '<span class="tbgl">Insert</span>'+
+        '<div class="tbb">'+
+          '<button data-act="verse" title="Insert Bible verse">Verse</button>'+
+          '<button data-c="vers" title="Link references in this block">Refs</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="tbg" data-g="history" title="History">'+
+        '<span class="tbgl">History</span>'+
+        '<div class="tbb">'+
+          '<button data-act="undo" title="Undo (Ctrl+Z)">↶</button>'+
+          '<button data-act="redo" title="Redo (Ctrl+Y)">↷</button>'+
+        '</div>'+
+      '</div>'+
     '</div>'+
     '<div id="bl">'+blocksHTML(cur.blocks,1)+'</div>'+
-    '<p class="hint">Tap a verse reference to read it · Tab = indent · Shift+Tab = outdent · Enter on an empty line steps back out a level.</p>'+
+    '<p class="hint">Type normally in the page below — each Enter starts a new paragraph · Shift+Enter = line break in the same paragraph · Tab / Shift+Tab = indent · Block tools above are optional.</p>'+
    '</div>';
   updateWC();
   setTimeout(fitHeader,0);
@@ -2918,7 +3411,38 @@ function renderEd(){
   const bl=$('#bl');
   bl.addEventListener('focusin',e=>{const b=e.target.closest('.blk');if(!b)return;
     curBlk=+b.dataset.i;const ty=$('#ty');if(ty&&cur.blocks[curBlk])ty.value=cur.blocks[curBlk].t});
-  bl.addEventListener('input',e=>{if(blockPainting)return;const b=e.target.closest('.blk');if(!b||!b.isConnected)return;
+  /* drag across paragraphs to select several lines at once */
+  let dragStart=null,dragMoved=false;
+  bl.addEventListener('mousedown',e=>{
+    if(e.button!==0)return;
+    if(e.target.closest('#blpad,.bl-pad,.mk'))return;
+    const blk=e.target.closest('.blk');
+    if(!blk){clearMultiSel();dragStart=null;return}
+    dragStart=+blk.dataset.i;dragMoved=false;
+    /* plain click clears a previous multi-selection unless Shift is held */
+    if(!e.shiftKey)clearMultiSel();
+    else if(multiSel){
+      applyMultiSel(multiSel.a,dragStart);
+      dragMoved=true;
+    }
+  });
+  bl.addEventListener('mousemove',e=>{
+    if(e.buttons!==1||dragStart==null)return;
+    const blk=e.target.closest('.blk');
+    if(!blk)return;
+    const i=+blk.dataset.i;
+    if(i!==dragStart)dragMoved=true;
+    if(dragMoved){
+      applyMultiSel(dragStart,i);
+      /* collapse native caret so the browser does not fight us */
+      try{getSelection().removeAllRanges()}catch(err){}
+    }
+  });
+  window.addEventListener('mouseup',()=>{
+    dragStart=null;
+  });
+
+  bl.addEventListener('input',e=>{if(blockPainting)return;clearMultiSel();const b=e.target.closest('.blk');if(!b||!b.isConnected)return;
     const i=+b.dataset.i,el=b.querySelector('.bt');if(!cur.blocks[i])return;
     const M={'# ':'h1','## ':'h2','### ':'h3','- ':'ul','* ':'ul','1. ':'num','[] ':'todo','[ ] ':'todo','> ':'quote','``` ':'code','--- ':'hr'};
     const nt=M[el.textContent];
@@ -2976,10 +3500,32 @@ function renderEd(){
     if(items.length)items[items.length-1].h+=tail;else blk.h+=tail;
     cur.blocks.splice(at,0,...items);
     paintBlocks();{let f=at+items.length-1;while(f>i&&cur.blocks[f].t==='hr')f--;focusB(f,true)}pushHist();touch()});
+  /* pad survives paintBlocks via delegation on #bl */
+  bl.addEventListener('click',e=>{
+    const pad=e.target.closest('#blpad,.bl-pad');
+    if(!pad||!cur)return;
+    e.preventDefault();
+    /* same as + : new paragraph after the one you were in */
+    window._tbBlk=currentBlockIndex();
+    addAfterCurrent('p',false);
+  });
   bl.addEventListener('keydown',e=>{
+    if(e.target.closest('#blpad,.bl-pad')&&(e.key==='Enter'||e.key===' ')){
+      e.preventDefault();
+      e.target.click();
+      return;
+    }
     const b=e.target.closest('.blk');if(!b)return;const i=+b.dataset.i;
     if(e.altKey&&(e.key==='ArrowUp'||e.key==='ArrowDown')){e.preventDefault();moveBlock(i,e.key==='ArrowUp'?-1:1);return}
     if(e.key==='Tab'){e.preventDefault();indent(i,e.shiftKey?-1:1);return}
+    if(e.key==='Enter'&&e.shiftKey){
+      /* soft line break inside the same paragraph — normal continuous typing */
+      e.preventDefault();
+      try{document.execCommand('insertLineBreak')}catch(err){
+        try{document.execCommand('insertHTML',false,'<br>')}catch(err2){}
+      }
+      return;
+    }
     if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();
       const el=b.querySelector('.bt');linkDom(el);
       const blk=cur.blocks[i];if(!blk)return;
@@ -3075,15 +3621,23 @@ function renderEd(){
     }});
 
   const tb=$('.tb');
-  tb.addEventListener('mousedown',e=>{if(e.target.closest('button'))e.preventDefault();
+  tb.addEventListener('mousedown',e=>{
+    /* keep the paragraph we were in — toolbar focus must not lose the place */
+    window._tbBlk=currentBlockIndex();
+    /* only buttons — preventDefault on select would block the block-type menu */
+    if(e.target.closest('button'))e.preventDefault();
     const s=getSelection();sel=s.rangeCount?s.getRangeAt(0).cloneRange():null});
   tb.addEventListener('click',async e=>{
     const btn=e.target.closest('button');if(!btn)return;
     if(btn.dataset.c){await cmd(btn.dataset.c,btn.dataset.v);return}
-    if(btn.dataset.act)doAct(btn.dataset.act,btn);
+    if(btn.dataset.act)doAct(btn.dataset.act,btn,e);
   });
   const ty=$('#ty');
-  ty.onchange=e=>{const b=cur.blocks[curBlk];if(!b)return;b.t=e.target.value;
+  if(ty)ty.addEventListener('mousedown',()=>{window._tbBlk=currentBlockIndex()});
+  ty.onchange=e=>{
+    const i=(typeof window._tbBlk==='number'?window._tbBlk:currentBlockIndex());
+    curBlk=i;
+    const b=cur.blocks[curBlk];if(!b)return;b.t=e.target.value;
     if(b.t==='toggle'&&b.open===undefined)b.open=true;
     paintBlocks();focusB(curBlk);pushHist();touch()};
 }
@@ -3149,25 +3703,68 @@ async function cmd(c,val){
   sync();
 }
 function sync(){const e2=$$('#bl .bt')[curBlk];if(e2&&cur&&cur.blocks[curBlk]){cur.blocks[curBlk].h=e2.innerHTML;touch()}}
-function addAfterCurrent(){
-  const i=curBlk,blk=cur.blocks[i];
-  if(!blk){cur.blocks.push({t:'p',h:'',lvl:0});paintBlocks();focusB(cur.blocks.length-1);pushHist();touch();return}
-  const lvl=lvlOf(blk),end=subtreeEnd(i);
-  /* on the last line of an indented group, a new block belongs after the group */
-  if(lvl>0&&end===cur.blocks.length-1){
-    let p=i;while(p>=0&&lvlOf(cur.blocks[p])>=lvl)p--;
-    if(p>=0){
-      const plvl=lvlOf(cur.blocks[p]);
-      const at=subtreeEnd(p)+1;
-      cur.blocks.splice(at,0,{t:'p',h:'',lvl:plvl});
-      paintBlocks();focusB(at);pushHist();touch();return;
+/* which paragraph the caret / focus is in (not always the last one) */
+function currentBlockIndex(){
+  if(!cur||!cur.blocks||!cur.blocks.length)return 0;
+  const sel=getSelection();
+  if(sel&&sel.rangeCount){
+    let n=sel.anchorNode;
+    if(n){
+      if(n.nodeType===3)n=n.parentElement;
+      const blk=n&&n.closest&&n.closest('#bl .blk');
+      if(blk&&blk.dataset.i!=null){
+        const i=+blk.dataset.i;
+        if(i>=0&&i<cur.blocks.length)return i;
+      }
     }
   }
-  const at=end+1;
-  cur.blocks.splice(at,0,{t:'p',h:'',lvl});
-  paintBlocks();focusB(at);pushHist();touch();
+  const ae=document.activeElement;
+  if(ae){
+    const blk=ae.closest&&ae.closest('#bl .blk');
+    if(blk&&blk.dataset.i!=null){
+      const i=+blk.dataset.i;
+      if(i>=0&&i<cur.blocks.length)return i;
+    }
+  }
+  if(typeof curBlk==='number'&&curBlk>=0&&curBlk<cur.blocks.length)return curBlk;
+  return Math.max(0,cur.blocks.length-1);
 }
-function doAct(a,anchor){
+function addAfterCurrent(forceType,before){
+  if(!cur)return;
+  /* remember the paragraph we were editing before the toolbar stole focus */
+  let i=currentBlockIndex();
+  if(typeof window._tbBlk==='number'&&window._tbBlk>=0&&window._tbBlk<cur.blocks.length)
+    i=window._tbBlk;
+  curBlk=i;
+  /* save what was typed in that paragraph */
+  const live=$$('#bl .bt')[i];
+  if(live&&cur.blocks[i])cur.blocks[i].h=live.innerHTML;
+  const blk=cur.blocks[i];
+  const tyEl=$('#ty');
+  let t=forceType||(tyEl&&tyEl.value)||'p';
+  if(!t||t==='p'&&!forceType&&tyEl)t=tyEl.value||'p';
+  if(!blk){
+    cur.blocks.push({t:t||'p',h:'',lvl:0});
+    paintBlocks();focusB(cur.blocks.length-1);pushHist();touch();return;
+  }
+  const lvl=lvlOf(blk);
+  let at;
+  if(before){
+    at=i; /* insert above the current paragraph */
+  }else{
+    const end=subtreeEnd(i);
+    /* stay under a parent list/toggle group when writing inside it */
+    at=end+1;
+  }
+  const neu={t:t||'p',h:'',lvl};
+  if(neu.t==='toggle')neu.open=true;
+  if(neu.t==='hr')neu.h='';
+  cur.blocks.splice(at,0,neu);
+  paintBlocks();focusB(neu.t==='hr'?Math.min(at+1,cur.blocks.length-1):at);
+  pushHist();touch();
+  toast(before?'Block added above':'Block added here');
+}
+function doAct(a,anchor,ev){
   if(!cur)return;
   if(a==='ul'||a==='num'){
     const b=cur.blocks[curBlk];if(!b)return;
@@ -3186,7 +3783,7 @@ function doAct(a,anchor){
   if(a==='toggle'){const b=cur.blocks[curBlk];if(!b)return;
     b.t=b.t==='toggle'?'p':'toggle';if(b.t==='toggle'&&b.open===undefined)b.open=true;
     paintBlocks();focusB(curBlk)}
-  else if(a==='addblk'){addAfterCurrent();return}
+  else if(a==='addblk'){addAfterCurrent(null,!!(ev&&ev.shiftKey));return}
   else if(a==='dup'){cur.blocks.splice(curBlk+1,0,clone(cur.blocks[curBlk]));paintBlocks();focusB(curBlk+1)}
   else if(a==='del'){
     if(cur.blocks.length>1){cur.blocks.splice(curBlk,1);curBlk=Math.max(0,curBlk-1)}
@@ -3482,14 +4079,27 @@ function wirePresentTouch(){
   el.addEventListener('touchend',e=>{
     const t=e.changedTouches[0];if(!t)return;
     const dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
-    if(e.target.closest('#pres .pb,button,a,.vref,.mk,.w,.vnote,.vpin,.pbar'))return;
+    /* word note / controls: open note, do not change slide */
+    const wc=e.target.closest('.wc');
+    if(wc&&!moved&&Math.abs(dx)<20&&Math.abs(dy)<20){
+      e.preventDefault();
+      wcShowRead(wc);
+      return;
+    }
+    const wh=e.target.closest('.w.has');
+    if(wh&&wh.dataset.k&&!moved&&Math.abs(dx)<20&&Math.abs(dy)<20){
+      e.preventDefault();
+      showWordNote(wh,wh.dataset.k);
+      return;
+    }
+    if(e.target.closest('#pres .pb,button,a,.vref,.mk,.vnote,.vpin,.pbar,.wpop,#pres-note'))return;
     if(dt>700)return;
     if(!moved&&Math.abs(dx)<12&&Math.abs(dy)<12){
       go(t.clientX<window.innerWidth*0.38?-1:1);
       return;
     }
     if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.4)go(dx<0?1:-1);
-  },{passive:true});
+  },{passive:false});
 }
 function present(){
   if(!cur)return;
@@ -3553,7 +4163,15 @@ function wirePbar(){
   fitPresTop();
   setTimeout(fitPresTop,0);
   if(!el._fit){el._fit=1;window.addEventListener('resize',fitPresTop)}
-  const sw=q('#sw');if(sw)sw.onclick=()=>{if(presMode==='ser'){presMode='bible';presBible(bs.b,bs.c)}else{presMode='ser';presSer()}};
+  const sw=q('#sw');if(sw)sw.onclick=()=>{
+    if(presMode==='ser'){
+      window._presSerPi=pi;
+      const pos=presBiblePos();
+      presBible(pos.b,pos.c);
+    }else{
+      presSer(true);
+    }
+  };
   const pm=q('#pm');if(pm)pm.onclick=()=>{psz=Math.max(16,psz-3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
   const pp=q('#pp');if(pp)pp.onclick=()=>{psz=Math.min(72,psz+3);el.style.setProperty('--ps',psz+'px');S.set.psize=psz;save()};
   const px=q('#px');if(px)px.onclick=exitP;
@@ -3581,8 +4199,31 @@ function wirePbar(){
   if(prev)prev.onclick=()=>{if(presMode==='ser')stepTo(pi-1);else{stepCh(-1);presBible(bs.b,bs.c)}};
   if(next)next.onclick=()=>{if(presMode==='ser')stepTo(pi+1);else{stepCh(1);presBible(bs.b,bs.c)}};
 }
-function presSer(){
+function presBiblePos(){
+  /* prefer current Bible place, else sermon book/ref, else last saved position */
+  let b=(bs&&typeof bs.b==='number')?bs.b:null,c=(bs&&bs.c)||null;
+  if(b==null||b<0||b>65){
+    if(cur&&cur.book){
+      const bi=EN.indexOf(cur.book);
+      if(bi>=0)b=bi;
+    }
+  }
+  if(b==null||b<0||b>65)b=(S.set.pos&&S.set.pos.b!=null)?S.set.pos.b:42;
+  if(c==null||c<1){
+    if(cur&&cur.ref){
+      const m=String(cur.ref).match(/(\d+)/);
+      if(m)c=+m[1];
+    }
+  }
+  if(c==null||c<1)c=(S.set.pos&&S.set.pos.c)||1;
+  const cs=chaps(EN[b])||[1];
+  if(cs.indexOf(c)<0)c=cs[0]||1;
+  return {b:+b,c:+c};
+}
+function presSer(keepPos){
   const el=$('#pres');presMode='ser';
+  el.classList.remove('pres-bible');el.classList.add('pres-ser');
+
   if(!cur){exitP();return}
   const refTxt=refWithBook(cur);
   const scol=seriesColorOf(cur.series);
@@ -3593,11 +4234,20 @@ function presSer(){
      (refTxt?'<p class="muted">'+esc(refTxt)+'</p>':'')+
      '<div id="pb2">'+blocksHTML(cur.blocks,0)+'</div></div>';
   el.style.setProperty('--ps',psz+'px');
-  linkDom($('#pb2'));wirePbar();stepTo(0);
+  linkDom($('#pb2'));wirePbar();
+  const resume=(keepPos&&typeof window._presSerPi==='number')?window._presSerPi:0;
+  /* resume exact slide at the TOP of the screen — no second center-scroll */
+  stepTo(resume,{resume:!!keepPos,instant:true,afterLayout:true});
 
-  /* toggles stay live while presenting */
+  /* toggles + word notes stay live while presenting */
   const box=$('#pb2');
   box.addEventListener('click',e=>{
+    const wc=e.target.closest('.wc');
+    if(wc){
+      e.preventDefault();e.stopPropagation();
+      wcShowRead(wc);
+      return;
+    }
     const mk=e.target.closest('.mk');if(!mk)return;
     const blk=mk.parentElement,i=+blk.dataset.i;
     const b=cur.blocks[i];
@@ -3606,7 +4256,7 @@ function presSer(){
     b.open=(b.open===false);
     touch();
     applyVis($('#pb2'));
-    stepTo(pi);          /* keep the same block in view after the re-flow */
+    stepTo(pi);
   });
 }
 function paintPres(){
@@ -3621,49 +4271,89 @@ function paintPres(){
   });
   const pg=$('#pres #pg');if(pg)pg.textContent=vis.length?(pi+1)+' / '+vis.length:'';
 }
-function stepTo(i){
+function scrollPresToBlock(el,instant){
+  /* pin the current block near the TOP of the presentation panel
+     (centering made it jump down and hide which point you were on) */
+  const pres=$('#pres');
+  if(!pres||!el)return;
+  const pr=pres.getBoundingClientRect();
+  const er=el.getBoundingClientRect();
+  /* leave space for status / safe area so the block is clearly the "current" line */
+  const gap=Math.round(Math.min(72,Math.max(40,pr.height*0.08)));
+  const delta=(er.top-pr.top)-gap;
+  if(Math.abs(delta)<2)return;
+  if(instant)pres.scrollTop+=delta;
+  else{
+    try{pres.scrollBy({top:delta,behavior:'smooth'})}
+    catch(e){pres.scrollTop+=delta}
+  }
+}
+function stepTo(i,opt){
+  opt=opt||{};
   const vis=$$('#pb2 .blk:not(.hid)');
   if(!vis.length){const pb=$('#pres #pbi');if(pb)pb.style.width='100%';return}
   pi=Math.max(0,Math.min(vis.length-1,i));
+  window._presSerPi=pi;
   vis.forEach((b,n)=>{
     b.classList.toggle('cur',n===pi);
     b.classList.toggle('near',Math.abs(n-pi)===1);
+    b.classList.remove('just-resumed');
   });
   const pres=$('#pres');
   if(pres)pres.classList.toggle('focus-deep',pi>0);
   const pg=$('#pres #pg');if(pg)pg.textContent=(pi+1)+' / '+vis.length;
   const pbi=$('#pres #pbi');if(pbi)pbi.style.width=Math.round((pi+1)/vis.length*100)+'%';
-  const touch=navigator.maxTouchPoints>0;
-  scrollTo(vis[pi],{block:'center',behavior:touch?'auto':'smooth'});
+  const el=vis[pi];
+  if(el){
+    if(opt.resume)el.classList.add('just-resumed');
+    const instant=!!opt.instant||navigator.maxTouchPoints>0;
+    /* layout must settle after HTML rebuild before measuring */
+    const go=()=>scrollPresToBlock(el,instant);
+    if(opt.afterLayout)requestAnimationFrame(()=>requestAnimationFrame(go));
+    else go();
+  }
   if(window.matchMedia('(max-width:760px)').matches){
-    const el=$('#pres');
-    if(el){el.classList.remove('showbar');
-      const pb=el.querySelector('.pb');
+    const elp=$('#pres');
+    if(elp){elp.classList.remove('showbar');
+      const pb=elp.querySelector('.pb');
       if(pb)pb.classList.remove('more');
       fitPresTop()}
   }else showBar(1600);
 }
 function presBible(b,c){
-  const el=$('#pres');presMode='bible';bs={b,c};
-  const cs=chaps(EN[b]);
+  const el=$('#pres');
+  if(b==null||c==null){const p=presBiblePos();b=p.b;c=p.c}
+  presMode='bible';bs={b:+b,c:+c};
+  try{S.set.pos={b:bs.b,c:bs.c};}catch(e){}
+  const cs=chaps(EN[bs.b])||[1];
+  if(cs.indexOf(bs.c)<0)bs.c=cs[0]||1;
   el.classList.remove('hide');
-  const test=testamentOf(b);
+  el.classList.add('pres-bible');el.classList.remove('pres-ser');
+  const test=testamentOf(bs.b);
   el.innerHTML=pbarHtml()+
    '<div class="pc"><div class="bar">'+
     testamentToggle(test)+
-    '<select id="pbk">'+bookOptions(b,'idx',test)+'</select>'+
-    '<select id="pch">'+(cs.length?cs:[c]).map(x=>'<option value="'+x+'"'+(x===c?' selected':'')+'>'+x+'</option>').join('')+'</select>'+
-   '</div><div id="pbt">'+bibleHTML(b,c)+'</div></div>';
+    '<select id="pbk">'+bookOptions(bs.b,'idx',test)+'</select>'+
+    '<select id="pch">'+cs.map(x=>'<option value="'+x+'"'+(x===bs.c?' selected':'')+'>'+x+'</option>').join('')+'</select>'+
+   '</div><div id="pbt">'+bibleHTML(bs.b,bs.c)+'</div></div>';
   el.style.setProperty('--ps',psz+'px');
-  $('#pbk').onchange=e=>presBible(+e.target.value,chaps(EN[+e.target.value])[0]||1);
-  $('#pch').onchange=e=>presBible(b,+e.target.value);
+  el.scrollTop=0;
+  const pg=$('#pres #pg');
+  if(pg)pg.textContent=(TE[bs.b]||EN[bs.b]||'')+' '+bs.c;
+  $('#pbk').onchange=e=>{
+    const nb=+e.target.value;
+    const ncs=chaps(EN[nb])||[1];
+    presBible(nb,ncs[0]||1);
+  };
+  $('#pch').onchange=e=>presBible(bs.b,+e.target.value);
   $$('#pres .tseg button').forEach(btn=>btn.onclick=()=>{
     const t=btn.dataset.t;
-    if(testamentOf(b)===t)return;
+    if(testamentOf(bs.b)===t)return;
     const nb=(t==='nt')?39:0;
     presBible(nb,chaps(EN[nb])[0]||1);
   });
   wirePbar();
+  showBar(4000); /* keep controls visible while picking book/chapter */
   $('#pbt').addEventListener('click',e=>{
     const vp=e.target.closest('.vpin');
     if(vp){
@@ -3676,9 +4366,11 @@ function presBible(b,c){
     const nt=e.target.closest('.vnote');
     if(nt){e.preventDefault();showVerseNote(nt,nt.dataset.k);return}
     const vn=e.target.closest('.vn');
-    if(vn){e.preventDefault();presentVerse(b,c,+vn.dataset.v,+vn.dataset.v);return}});
+    if(vn){e.preventDefault();presentVerse(bs.b,bs.c,+vn.dataset.v,+vn.dataset.v);return}
+  });
 }
 function exitP(){
+  const pn=document.getElementById('pres-note');if(pn)pn.remove();
   presExitAt=Date.now();
   clearInterval(presTick);presTick=null;
   clearTimeout(barTimer);
@@ -3710,6 +4402,14 @@ document.addEventListener('keydown',e=>{
   if(e.ctrlKey||e.metaKey){
     const k=(e.key||'').toLowerCase();
     if(k==='s'){e.preventDefault();if(cur){flushSave();toast('Saved')}return}
+    /* Ctrl/Cmd+A in the sermon page: select every paragraph for copy */
+    if(k==='a'&&view==='ser'&&cur&&$('#bl')&&$('#bl').contains(tgt)){
+      e.preventDefault();
+      applyMultiSel(0,cur.blocks.length-1);
+      try{getSelection().removeAllRanges()}catch(err){}
+      toast('All paragraphs selected — copy with Ctrl+C');
+      return;
+    }
     if(inField&&(k==='b'||k==='i'||k==='u')){e.preventDefault();document.execCommand(k);sync();return}
     if(inField&&k==='z'&&!e.shiftKey){e.preventDefault();undo();return}
     if(inField&&(k==='y'||(k==='z'&&e.shiftKey))){e.preventDefault();redo();return}
@@ -3981,6 +4681,31 @@ function wcUnwrap(span){
   if(!parent)return;
   while(span.firstChild)parent.insertBefore(span.firstChild,span);
   parent.removeChild(span);
+}
+function wcShowRead(span){
+  /* full-screen overlay so the note is never behind presentation UI */
+  const note=(span.getAttribute('data-c')||'').trim();
+  const word=(span.textContent||'').trim();
+  if(!note){toast('No note on this word');return}
+  const old=document.getElementById('pres-note');
+  if(old)old.remove();
+  wpopClose();
+  if(typeof wcClose==='function')try{wcClose()}catch(e){}
+  const layer=document.createElement('div');
+  layer.id='pres-note';
+  layer.className='pres-note-layer';
+  layer.innerHTML='<div class="pres-note-card" role="dialog" aria-label="Word note">'+
+    '<div class="pres-note-word">'+esc(word)+'</div>'+
+    '<div class="pres-note-body">'+linkStr(note)+'</div>'+
+    '<div class="pres-note-actions">'+
+      '<button type="button" class="ed">Edit</button>'+
+      '<button type="button" class="cx pri">Close</button>'+
+    '</div></div>';
+  document.body.appendChild(layer);
+  const close=()=>{layer.remove()};
+  layer.querySelector('.cx').onclick=close;
+  layer.querySelector('.ed').onclick=()=>{close();wcOpen(span,false)};
+  layer.addEventListener('click',e=>{if(e.target===layer)close()});
 }
 function wcOpen(span,isNew){
   wcClose();
